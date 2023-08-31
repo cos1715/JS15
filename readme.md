@@ -71,7 +71,7 @@ const fib = (n) => {
   // your code
 };
 
-const result = calculate(5);
+const result = fib(5);
 // 1 1 2 3 5
 ```
 
