@@ -10,9 +10,15 @@ It will help for better testing
 ## Quadratic equation
 
 Create a function that solves quadratic equation  
-Use discriminant fot finding equation roots  
+Use discriminant for finding equation roots  
 Return value of function should be obj **{x1, x2}**  
-If there are no roots return **{x1:null, x2:null}**
+If there are no roots return **{x1:null, x2:null}**  
+Use Math.sqrt() to get square root;
+
+```javascript
+const sqrt = Math.sqrt(9);
+console.log(sqrt); // 3
+```
 
 ```javascript
 const calculate = (a, b, c) => {
