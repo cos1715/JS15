@@ -1,102 +1,89 @@
 # Lecture
 
-[Presentation](https://docs.google.com/presentation/d/1hZmZcOZVNn5RpSANqxS5YkYyWJ-iURfC5Gkeuj9aqkU/edit?usp=sharing)
+## W3Schools
+
+> [String](https://www.w3schools.com/js/js_strings.asp)  
+> [String Methods](https://www.w3schools.com/js/js_string_methods.asp)  
+> [String Search Methods](https://www.w3schools.com/js/js_string_search.asp)  
+> [String Template](https://www.w3schools.com/js/js_string_templates.asp)
+
+## Javascript.info
+
+> [String](https://uk.javascript.info/string)
 
 # JS Homework
 
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Quadratic equation
+## Reverse str
 
-Create a function that solves quadratic equation  
-Use discriminant for finding equation roots  
-Return value of function should be obj **{x1, x2}**  
-If there are no roots return **{x1:null, x2:null}**  
-Use Math.sqrt() to get square root;
+Create a function that reverses str
 
 ```javascript
-const sqrt = Math.sqrt(9);
-console.log(sqrt); // 3
-```
-
-```javascript
-const calculate = (a, b, c) => {
+const reverse = (str) => {
   // your code
 };
 
-const roots = calculate(1, 5, 6);
-// {
-//   x1: -2,
-//   x2: -3,
-// };
+reverse("hello");
+// olleh
 ```
 
-## Factorial
+## Count words
 
-Create a function that finds a factorial of a number
+Create a function that counts words in sentence
 
 ```javascript
-const factorial = (num) => {
+const countWords = (str) => {
   // your code
 };
 
-const result = factorial(5);
-// 120
+countWords("Hi my name is Taras");
+// 5
 ```
 
-## Calculator
+## Clear whitespace
 
-Create a function that accepts a callback  
-and infinite number of arguments  
-Callbacks can be: addition, subtraction, multiplication, division
+Create a function that clears spaces
 
 ```javascript
-const calculate = (callback, arg1, arg2, ...) => {
+const clearWhiteSpace = (str) => {
   // your code
 };
 
-const result = calculate(addition, 1, 1, 1, 1);
-// 1 + 1 + 1 + 1 = 4
-const result = calculate(subtraction, 20, 10, 5);
-// 20 - 10 - 5 = 5
-const result = calculate(multiplication, 2, 10, 2);
-// 2 * 10 * 2 = 40
-const result = calculate(division, 20, 10, 2);
-// 20 / 10 / 2 = 1
+const result = clearWhiteSpace("  1   2   ");
+// 12
 ```
 
-## Fibonacci
+## Max length
 
-Create a function that receives a value from user  
-and prints list of fibonacci seq  
-Seq starts from 1
+Create a function that cuts str if it's length is bigger then max length  
+Add ... at the end if str is bigger
 
 ```javascript
-const fib = (n) => {
+const cutStr = (str, maxLength) => {
   // your code
 };
 
-const result = fib(5);
-// 1 1 2 3 5
+cutStr("Hello", 5);
+// "Hello"
+cutStr("Hello there", 5);
+// "Hello..."
 ```
 
-## Pyramid
+## Palindrome
 
-Create a function that receives a value from user  
-and prints a pyramid with rows from received value  
-Empty space fill with #
-Pyramid fill with \*
+Check if word reads the same from start to end  
+and from end to start  
+Return true/false
 
 ```javascript
-const printPyramid = (n) => {
+const palindrome = (str) => {
   // your code
 };
 
-printPyramid(5);
-// ####*####
-// ###***###
-// ##*****##
-// #*******#
-// *********
+palindrome("tenet");
+// true
+palindrome("js");
+// false
 ```
