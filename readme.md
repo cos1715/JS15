@@ -13,7 +13,8 @@
 
 ## Javascript.info
 
-> [Array](https://uk.javascript.info/array) > [Array Methods](https://uk.javascript.info/array-methods)
+> [Array](https://uk.javascript.info/array)  
+> [Array Methods](https://uk.javascript.info/array-methods)
 
 # JS Homework
 
