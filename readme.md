@@ -157,7 +157,7 @@ const strings = [
 ];
 
 unique(strings);
-// Hello, World, JS, HI, HTML, CSS
+// HELLO, World, JS, HI, HTML, CSS
 ```
 
 ## Find the Longest Consecutive Sequence
