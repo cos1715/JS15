@@ -2,7 +2,11 @@
 
 const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
 const sortArr = (arr) => {
-  return arr.sort((a, b) => a.length - b.length);
+  return arr.sort((a, b) => {
+    const lengthCheck = a.length - b.length;
+    const alphaCheck = a > b ? 1 : -1;
+    return lengthCheck === 0 ? alphaCheck : lengthCheck;
+  });
 };
 
 const result = sortArr(arr);
