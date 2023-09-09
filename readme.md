@@ -50,7 +50,7 @@ Sort arr of strings from shortest to longest
 ```javascript
 const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
 sortArr(arr);
-// '', ' ', 'a', 'bb', '4534', 'sdfds', 'r4rdv-'
+// '', 'a', ' ', 'bb', '4534', 'sdfds', 'r4rdv-'
 ```
 
 ## Calculate average age of users older then 17 and younger then 55
@@ -164,7 +164,8 @@ unique(strings);
 
 Write a function called findLongestConsecutive that takes an array of numbers  
 and finds the longest consecutive subarray of consecutive integers in the given array.  
-For example, for the array [1, 2, 3, 4, 5, 2, 3, 4, 5], the function should return [1, 2, 3, 4, 5].
+For example, for the array [1, 2, 3, 4, 5, 2, 3, 4, 5], the function should return [1, 2, 3, 4, 5].  
+Sequence should start from 1
 
 ```javascript
 function findLongestConsecutive(arr) {
