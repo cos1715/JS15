@@ -13,7 +13,7 @@
 
 # JS Homework
 
-Feel free to modify test data or add new data
+Feel free to modify test data or add new data  
 It will help for better testing
 
 ## Reverse str
