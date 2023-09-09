@@ -26,7 +26,6 @@ const averageAge = (arr) => {
   const filteredArr = arr.filter(
     (profile) => profile.age > 17 && profile.age < 55
   );
-
   const sum = filteredArr.reduce((acc, profile) => acc + profile.age, 0);
 
   return sum / filteredArr.length;
