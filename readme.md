@@ -120,8 +120,8 @@ isPrime(5);
 ## Check if number is Armstrong Number
 
 An armstrong number is a number which equal to the sum of the cubes of its individual digits.  
-153 = 1\*1\*1 + 5\*5\*5 + 3\*3\*3
-153 = 1 + 125 + 27
+153 = 1\*1\*1 + 5\*5\*5 + 3\*3\*3  
+153 = 1 + 125 + 27  
 153 = 153
 
 ```javascript
