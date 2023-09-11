@@ -1,7 +1,23 @@
+// ##Filter arr
+
+const filterRange = (arr, from, to) => {
+  return arr.filter((item) => item >= from && item <= to);
+};
+
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(filterRange(numArr, 3, 7));
+
+// ##Sort arr
+
+const sortArr = (arr) => arr.sort((a, b) => a - b);
+
+const arrToSort = [324, 32423, -3242, 544, 0, 23, -454, 22, 4];
+console.log(sortArr(arrToSort));
+
 // ## Sort arr str
 
 const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
-const sortArr = (arr) => {
+const sortStrArr = (arr) => {
   return arr.sort((a, b) => {
     const lengthCheck = a.length - b.length;
     const alphaCheck = a > b ? 1 : -1;
@@ -9,7 +25,7 @@ const sortArr = (arr) => {
   });
 };
 
-const result = sortArr(arr);
+console.log(sortStrArr(arr));
 // '', ' ', 'a', 'bb', '4534', 'sdfds', 'r4rdv-'
 
 // ## Calculate average age of users older then 17 and younger then 55
@@ -103,7 +119,7 @@ const minMaxAge = (arr) => {
   );
 };
 
-minMaxAge(students);
+console.log(minMaxAge(students));
 
 // ## Save only unique values
 
@@ -135,6 +151,8 @@ const unique = (strings) => {
   return uniqueValues;
 };
 
+console.log(unique(strings));
+
 // ## Find the Longest Consecutive Sequence
 
 const numbers = [1, 2, 3, 4, 5, 2, 3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 5];
@@ -162,3 +180,4 @@ const findLongestConsecutive = (arr) => {
 };
 
 const longestConsecutive = findLongestConsecutive(numbers);
+console.log(longestConsecutive);
