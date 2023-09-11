@@ -2,10 +2,11 @@
 
 ## W3Schools
 
-> [Array](https://www.w3schools.com/js/js_arrays.asp)  
-> [Array Methods](https://www.w3schools.com/js/js_array_methods.asp)  
-> [String Sort](https://www.w3schools.com/js/js_array_sort.asp)  
-> [String Loop Methods](https://www.w3schools.com/js/js_array_iteration.asp)
+> [Number](https://www.w3schools.com/js/js_numbers.asp)  
+> [BigInt](https://www.w3schools.com/js/js_bigint.asp)  
+> [Number Methods](https://www.w3schools.com/js/js_number_methods.asp)  
+> [Math](https://www.w3schools.com/js/js_math.asp)  
+> [Random](https://www.w3schools.com/js/js_random.asp)
 
 ## Doesitmutate
 
@@ -18,161 +19,126 @@
 
 # JS Homework
 
-Feel free to modify test data or add new data  
+Feel free to modify test data or add new data
 It will help for better testing
 
-## Filter arr
+## Pythagorean theorem
 
-Return arr of numbers with values that are in range from 'from' param and to 'to' param
+Calculate length of other side
+a\*a + b\*b = c\*c  
+Find c
 
 ```javascript
-filterRange(arr, from, to);
+pythagorean(a, b);
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-filterRange(arr, 3, 7);
-// 3,4,5,6,7
+pythagorean(5, 12);
+// 13
 ```
 
-## Sort arr
+## Show number in money format
 
-Sort arr from least to biggest
++- sign should be present  
+Separate thousands with ,
 
 ```javascript
-const arr = [324, 32423, -3242, 544, 0, 23, -454, 22, 4];
-sortArr(arr);
-// -3242, -454, 0, 4, 22, 23, 324, 544, 32423
+formatMoney(num);
+
+formatMoney(1232323);
+//'+ 1,232,323.00'
+
+formatMoney(-23.2132);
+//'- 23.21'
 ```
 
-## Sort arr str
+## Format number in spaces
 
-Sort arr of strings from shortest to longest
++- sign should be present  
+Separate thousands with spaces
 
 ```javascript
-const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
-sortArr(arr);
-// '', 'a', ' ', 'bb', '4534', 'sdfds', 'r4rdv-'
+formatNumber(num);
+
+formatNumber(1232323);
+// 1 232 323
+
+formatNumber(1223.65378);
+// 1 223.654
 ```
 
-## Calculate average age of users older then 17 and younger then 55
+## Write a password generator with length n
+
+Generate password with any symbol  
+!"#$%&'()\*+,-./0123456789:;<=>?  
+@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^\_  
+`abcdefghijklmnopqrstuvwxyz
 
 ```javascript
-const arr = [
-  { name: "John", age: 25 },
-  { name: "Pete", age: 30 },
-  { name: "Mary", age: 29 },
-  { name: "Taras", age: 25 },
-  { name: "Kate", age: 74 },
-  { name: "Chris", age: 14 },
-  { name: "Alan", age: 5 },
-  { name: "Boris", age: 55 },
-  { name: "Elizabeth", age: 48 },
-];
+generatePassword(n);
 
-averageAge(arr);
-// 31.4
+generatePassword(8);
+// 1H:s4dh$
 ```
 
-## Sort arr by name
+## Calculate percentage with n numbers after dot
 
-Sort arr by name if 2 elements have same name sort by age
+Given 2 numbers. Calculate their percentage with n precision after dot  
+50 is 25% of 200  
+secondNum \* 100% / firstNum
 
 ```javascript
-const arr = [
-  { name: "John", age: 25 },
-  { name: "John", age: 5 },
-  { name: "John", age: 2 },
-  { name: "John", age: 45 },
-  { name: "Pete", age: 30 },
-  { name: "Mary", age: 29 },
-  { name: "Mary", age: 2 },
-  { name: "Taras", age: 25 },
-  { name: "Taras", age: 19 },
-  { name: "Kate", age: 74 },
-  { name: "Chris", age: 14 },
-  { name: "Alan", age: 5 },
-  { name: "Alan", age: 32 },
-  { name: "Boris", age: 55 },
-  { name: "Elizabeth", age: 48 },
-  { name: "Elizabeth", age: 8 },
-];
+calc(firstNum, secondNum, precision);
 
-sortUsers(arr);
-// [
-//   { name: "Alan", age: 5 },
-//   { name: "Alan", age: 32 },
-//   { name: "Boris", age: 55 },
-//   { name: "Chris", age: 14 },
-//   { name: "Elizabeth", age: 8 },
-//   { name: "Elizabeth", age: 48 },
-//   { name: "John", age: 2 },
-//   { name: "John", age: 5 },
-//   { name: "John", age: 25 },
-//   { name: "John", age: 45 },
-//   { name: "Kate", age: 74 },
-//   { name: "Mary", age: 2 },
-//   { name: "Mary", age: 29 },
-//   { name: "Pete", age: 30 },
-//   { name: "Taras", age: 19 },
-//   { name: "Taras", age: 25 },
-// ];
+calc(200, 50, 0);
+// 25
+
+calc(200, 0.14, 1);
+// 0.1
 ```
 
-## Find min and max
+## Get integer part of number and decimal
 
-Find min and max and return obj {min, max}  
-Use reduce method
+User enters a number  
+Get it's integer part and decimal
 
 ```javascript
-const arr = [
-  { name: "John", age: 25 },
-  { name: "Pete", age: 30 },
-  { name: "Mary", age: 29 },
-  { name: "Taras", age: 25 },
-  { name: "Kate", age: 74 },
-  { name: "Chris", age: 14 },
-  { name: "Alan", age: 5 },
-  { name: "Boris", age: 55 },
-  { name: "Elizabeth", age: 48 },
-];
+splitNumber(num);
 
-minMaxAge(arr);
-// {min:5, max:74}
+splitNumber(2);
+// {int: 2, decimal: 0}
+
+splitNumber(2.34);
+// {int: 2, decimal: 34}
 ```
 
-## Save only unique values
+## Check if prime
 
-Save unique values from arr to uniqueArr
+Check if given number is a prime number  
+Prime numbers are numbers that is divisible without a remainder only by itself and by 1  
+Should return boolean
 
 ```javascript
-const strings = [
-  "HELLO",
-  "World",
-  "JS",
-  "Js",
-  "HI",
-  "Hello",
-  "HTML",
-  "CSS",
-  "js",
-];
+isPrime(n);
 
-unique(strings);
-// HELLO, World, JS, HI, HTML, CSS
+isPrime(4);
+// false
+
+isPrime(5);
+// true
 ```
 
-## Find the Longest Consecutive Sequence
+## Check if number is Armstrong Number
 
-Write a function called findLongestConsecutive that takes an array of numbers  
-and finds the longest consecutive subarray of consecutive integers in the given array.  
-For example, for the array [1, 2, 3, 4, 5, 2, 3, 4, 5], the function should return [1, 2, 3, 4, 5].  
-Sequence should start from 1
+An armstrong number is a number which equal to the sum of the cubes of its individual digits.  
+153 = 1\*1\*1 + 5\*5\*5 + 3\*3\*3
+153 = 1 + 125 + 27
+153 = 153
 
 ```javascript
-function findLongestConsecutive(arr) {
-  // Your code here
-}
+isArmstrong(n);
 
-const numbers = [1, 2, 3, 4, 5, 2, 3, 4, 5];
-const longestConsecutive = findLongestConsecutive(numbers);
-// [1, 2, 3, 4, 5]
+isArmstrong(4);
+// false
+
+isArmstrong(153);
+// true
 ```
