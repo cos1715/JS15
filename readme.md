@@ -8,15 +8,6 @@
 > [Math](https://www.w3schools.com/js/js_math.asp)  
 > [Random](https://www.w3schools.com/js/js_random.asp)
 
-## Doesitmutate
-
-> [Doesitmutate](https://doesitmutate.xyz/)
-
-## Javascript.info
-
-> [Array](https://uk.javascript.info/array)  
-> [Array Methods](https://uk.javascript.info/array-methods)
-
 # JS Homework
 
 Feel free to modify test data or add new data
