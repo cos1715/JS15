@@ -1,52 +1,100 @@
-const num = 12;
+const date = new Date();
+console.log("🚀 ~ file: lesson.js:2 ~ date:", date);
 
-num.toFixed(2); // 12.00
-(12.123).toFixed(2); // 12.12
+// start Date Jan 1 1970
 
-console.log(0.1 + 0.2); // 0.3000004
+const dateFromMS = new Date(1000000);
+const dateFromMSEarlierThen1970 = new Date(-10000000000); // Sun Sep 07 1969 09:13:20 GMT+0300 (Eastern European Summer Time)
 
-Number.MAX_VALUE; // max value
-Number.MIN_VALUE; // min value
-Number.MAX_SAFE_INTEGER; // max value for safe calc
-Number.MIN_SAFE_INTEGER; // min value for safe calc
+new Date("2023/2/4 11:00");
 
-console.log(Number.MAX_SAFE_INTEGER + 1000); // result is unpredictable
+new Date(2023, 8); // month starts from 0
 
-Number.isFinite(12); // true
-Number.isFinite(Infinity); // false
-Number.isInteger(12); // true
-Number.isInteger("abc"); // false
-Number.isSafeInteger(12); // true
-isNaN(NaN); // true
+new Date(2023, 8, 4); // month starts from 0
+new Date(2023, 8, 4, 5); // month starts from 0
+new Date(2023, 8, 4, 5, 11); // month starts from 0
+new Date(2023, 8, 4, 5, 11, 23); // month starts from 0
 
-parseInt("12"); // 12
-parseInt("12.34"); // 12
-parseInt("12asd"); // 12
-parseInt("a12asd"); // NaN
-parseFloat("12.34"); // 12.34
+const now = Date.now(); // ms from 1970
 
-Math.ceil(12.1); // 12
-Math.floor(12.9); // 12
-Math.floor(-11.9); // -12
-Math.round(12.4); // 12
-Math.round(12.5); // 13
-Math.trunc(12.5); // 12
+date.toDateString();
+date.toISOString();
+date.toUTCString();
 
-Math.pow(2, 3); // 8 === 2**3
-Math.sqrt(4); // 2
+date.getFullYear();
+date.getMonth();
+date.getDate();
+date.getDay(); //0===sunday
+date.getHours();
+date.getMinutes();
+date.getSeconds();
+date.getMilliseconds();
+date.getTime();
+date.getTimezoneOffset();
 
-Math.max(1, 2, 7, 3); // 7
-Math.min(9, 6, 3, 7); // 3
+// almost all get methods have utc variant
 
-const randomize = (from, to) => {
-  const random = Math.random();
-  const range = random * (to - from + 1);
-  const trunc = Math.trunc(range);
-  const validRange = trunc + from;
+date.setFullYear();
+date.setMonth();
+date.setDate();
+date.setHours();
+date.setMinutes();
+date.setSeconds();
+date.setTime();
 
-  return validRange;
+for (let i = 0; i < 100000; i++) {
+  i++;
+}
+
+const afterCycle = Date.now();
+
+const weekDays = ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+
+const getWeekDay = (date) => {
+  return weekDays[date.getDay()];
 };
 
-for (let i = 0; i < 100; i++) {
-  console.log(randomize(5, 55));
-}
+const getTodaysMSeconds = () => {
+  const date = new Date();
+  const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  return date.getTime() - today.getTime();
+};
+
+const getTimeToDate = (date) => {
+  const now = Date.now();
+  return date.getTime() - now;
+};
+
+//YYYY/MM/DD 2023/09/13
+//YYYY-MM-DD 2023-09-13
+//MM-YYYY-DD 09-2023-13
+//MM-DD-YYYY 09-13-2023
+const formatDate = (formatter) => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const formattedDate = [];
+  const formatArr = formatter.split(/\W+/g);
+  const [, separator] = formatter.split(/[a-zA-Z]+/g);
+
+  formatArr.forEach((element, index) => {
+    if (element.includes("Y")) {
+      formattedDate.push(year);
+    }
+    if (element.includes("M")) {
+      formattedDate.push(month);
+    }
+    if (element.includes("D")) {
+      formattedDate.push(day);
+    }
+    if (index !== formatArr.length - 1) {
+      formattedDate.push(separator);
+    }
+  });
+
+  return formattedDate.join("");
+};
+
+formatDate("YYYY/MM/DD");
