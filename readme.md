@@ -2,11 +2,10 @@
 
 ## W3Schools
 
-> [Number](https://www.w3schools.com/js/js_numbers.asp)  
-> [BigInt](https://www.w3schools.com/js/js_bigint.asp)  
-> [Number Methods](https://www.w3schools.com/js/js_number_methods.asp)  
-> [Math](https://www.w3schools.com/js/js_math.asp)  
-> [Random](https://www.w3schools.com/js/js_random.asp)
+> [Dates](https://www.w3schools.com/js/js_dates.asp)  
+> [Dates Formats](https://www.w3schools.com/js/js_date_formats.asp)  
+> [Dates Get](https://www.w3schools.com/js/js_date_methods.asp)  
+> [Dates Set](https://www.w3schools.com/js/js_date_methods_set.asp)
 
 # JS Homework
 
