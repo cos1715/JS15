@@ -127,8 +127,11 @@ An armstrong number is a number which equal to the sum of the cubes of its indiv
 ```javascript
 isArmstrong(n);
 
-isArmstrong(4);
+isArmstrong(152);
 // false
+
+isArmstrong(4);
+// true
 
 isArmstrong(153);
 // true
