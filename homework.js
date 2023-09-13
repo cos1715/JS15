@@ -43,15 +43,15 @@ const formatNumber = (num) => {
 // ## Write a password generator with length n
 
 const generatePassword = (n) => {
-  let password = "";
+  const password = [];
 
   for (let i = 0; i < n; i++) {
     const code = Math.floor(Math.random() * (123 - 33)) + 33;
     const char = String.fromCharCode(code);
-    password = `${password}${char}`;
+    password.push(char);
   }
 
-  return password;
+  return password.join("");
 };
 
 // ## Calculate percentage with n numbers after dot
