@@ -1,3 +1,56 @@
+// ## Get days in year
+
+const getDaysInYear = (year) => {
+  return (year % 4 === 0 && year % 100 > 0) || year % 400 == 0 ? 366 : 365;
+};
+
+// const getDaysInYear = (year) => {
+//   let days = 0;
+//   for (let i = 0; i < 12; i++) {
+//     const date = new Date(year, i, 0);
+//     days += date.getDate();
+//   }
+
+//   return days;
+// };
+
+// ## Get day of a year
+
+const getDayNumber = (date) => {
+  const dates = new Date(date);
+  const msDiff = Math.floor(dates - new Date(dates.getFullYear(), 0, 0));
+
+  return msDiff / 1000 / 60 / 60 / 24;
+};
+
+// ## Get fiscal quarters
+
+const monthsArr = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const quarters = ["I", "II", "III", "IV"];
+
+const getQuarters = (date) => {
+  const dateObj = new Date(date);
+  const month = monthsArr[dateObj.getMonth()];
+  const day = dateObj.getDate();
+  const quarter = quarters[Math.floor(dateObj.getMonth() / 3)];
+
+  return `${month} ${day} is ${quarter} quarter`;
+};
+
 // ## Write a function to calculate date diff
 
 const calcDateDiff = (startDate, endDate) => {
