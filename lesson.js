@@ -1,100 +1,154 @@
-const date = new Date();
-console.log("🚀 ~ file: lesson.js:2 ~ date:", date);
+// // // const obj = {
+// // //   a: 1,
+// // //   b: 2,
+// // //   calcSum: () => {},
+// // //   calcSum() {},
+// // //   calcSum: function () {},
+// // // };
 
-// start Date Jan 1 1970
+// // const obj = {
+// //   a: 1,
+// //   b: 2,
+// //   calcSum() {
+// //     debugger;
+// //     return this.a + this.b;
+// //   },
+// // };
 
-const dateFromMS = new Date(1000000);
-const dateFromMSEarlierThen1970 = new Date(-10000000000); // Sun Sep 07 1969 09:13:20 GMT+0300 (Eastern European Summer Time)
+// // const foo = () => {
+// //   console.log(this);
+// // };
 
-new Date("2023/2/4 11:00");
+// // function bazz() {
+// //   console.log(this);
+// // }
 
-new Date(2023, 8); // month starts from 0
+// // foo();
 
-new Date(2023, 8, 4); // month starts from 0
-new Date(2023, 8, 4, 5); // month starts from 0
-new Date(2023, 8, 4, 5, 11); // month starts from 0
-new Date(2023, 8, 4, 5, 11, 23); // month starts from 0
+// // bazz();
 
-const now = Date.now(); // ms from 1970
+// // console.log(obj.calcSum());
 
-date.toDateString();
-date.toISOString();
-date.toUTCString();
+// // const newValues = obj;
+// // const newValues = { ...obj, a: 2 };
 
-date.getFullYear();
-date.getMonth();
-date.getDate();
-date.getDay(); //0===sunday
-date.getHours();
-date.getMinutes();
-date.getSeconds();
-date.getMilliseconds();
-date.getTime();
-date.getTimezoneOffset();
+// // // newValues.a = 2;
+// // newValues.calcSum();
 
-// almost all get methods have utc variant
+// function printInfo(arg = "") {
+//   return `${this.name} is ${this.age} ${arg}`;
+// }
 
-date.setFullYear();
-date.setMonth();
-date.setDate();
-date.setHours();
-date.setMinutes();
-date.setSeconds();
-date.setTime();
+// const user = {
+//   name: "Taras",
+//   age: 25,
+//   printInfo,
+// };
 
-for (let i = 0; i < 100000; i++) {
-  i++;
+// const arrow = () => {
+//   console.log(this);
+// };
+
+// const admin = {
+//   name: "admin",
+//   age: Infinity,
+//   role: "admin",
+//   status: "super-admin",
+//   printInfo: user.printInfo,
+//   arrow,
+//   getName: () => {
+//     debugger;
+//     return this.name;
+//   },
+
+//   get() {
+//     const getName = () => {
+//       return this.name;
+//     };
+//     arrow();
+//     const name = getName();
+
+//     return name;
+//   },
+// };
+
+// const foobar = user.printInfo;
+
+// foobar();
+
+// const admin2 = { ...admin, name: "capitan" };
+// admin2.get();
+
+// const bindInfo = printInfo.bind(admin2);
+
+// bindInfo("dfdsfsfds");
+
+// // will not work
+// const bindInfoUser = bindInfo.bind(user);
+
+// bindInfoUser();
+// // printInfo();
+
+// console.log(printInfo.call(user, "dfdsfds"));
+// console.log(printInfo.call(admin));
+// console.log(printInfo.apply(user, ["sdfdsfdsf"]));
+// console.log(printInfo.apply(admin));
+
+// function User(name, age) {
+//   const info = `${name} is ${age}`;
+
+//   this.name = name;
+//   this.age = age;
+//   this.info = info;
+//   this.printInfo = () => this.info;
+//   this.printName = function () {
+//     return this.name;
+//   };
+// }
+
+// const userFromConstructor = new User("Taras", 25);
+// console.log(
+//   "🚀 ~ file: lesson.js:103 ~ userFromConstructor:",
+//   userFromConstructor
+// );
+
+// const stolenInfo = userFromConstructor.printInfo;
+// const stolenName = userFromConstructor.printName;
+
+// console.log(
+//   new User("Taras", 25),
+//   new User("Adrii", 28),
+//   new User("Julia", 22),
+//   new User("Kate", 26)
+// );
+
+function printNumbers() {
+  const start = this.from;
+  const end = this.to;
+
+  for (let i = start; i < end; i++) {
+    console.log(i);
+  }
 }
 
-const afterCycle = Date.now();
-
-const weekDays = ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-
-const getWeekDay = (date) => {
-  return weekDays[date.getDay()];
+const obj = {
+  from: 1,
+  to: 20,
+  printNumbers,
 };
 
-const getTodaysMSeconds = () => {
-  const date = new Date();
-  const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+const obj2 = { from: 15, to: 105 };
 
-  return date.getTime() - today.getTime();
-};
+// console.log("🚀 printNumbers.call(obj2):", printNumbers.call(obj2));
+// console.log("🚀 obj.printNumbers:", obj.printNumbers());
 
-const getTimeToDate = (date) => {
-  const now = Date.now();
-  return date.getTime() - now;
-};
+function Calculator(initialValue) {
+  this.result = initialValue;
 
-//YYYY/MM/DD 2023/09/13
-//YYYY-MM-DD 2023-09-13
-//MM-YYYY-DD 09-2023-13
-//MM-DD-YYYY 09-13-2023
-const formatDate = (formatter) => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const formattedDate = [];
-  const formatArr = formatter.split(/\W+/g);
-  const [, separator] = formatter.split(/[a-zA-Z]+/g);
-
-  formatArr.forEach((element, index) => {
-    if (element.includes("Y")) {
-      formattedDate.push(year);
-    }
-    if (element.includes("M")) {
-      formattedDate.push(month);
-    }
-    if (element.includes("D")) {
-      formattedDate.push(day);
-    }
-    if (index !== formatArr.length - 1) {
-      formattedDate.push(separator);
-    }
-  });
-
-  return formattedDate.join("");
-};
-
-formatDate("YYYY/MM/DD");
+  this.sum = (a) => {
+    this.result += a;
+  };
+  this.sub = (a) => {
+    this.result -= a;
+  };
+}
