@@ -1,94 +1,34 @@
-// ## Pythagorean
+// ## Write a function to calculate date diff
 
-const pythagorean = (a, b) => {
-  return Math.sqrt(a ** 2 + b ** 2).toFixed(2);
-};
+const calcDateDiff = (startDate, endDate) => {
+  let str = "";
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-// ## Show number in money format
+  const msDiff = end - start;
+  const secondsDiff = msDiff / 1000;
+  const minutesDiff = Math.trunc(secondsDiff / 60);
+  const hoursDiff = Math.trunc(minutesDiff / 60);
+  const daysDiff = Math.trunc(hoursDiff / 24);
+  const years = end.getFullYear() - start.getFullYear();
 
-const formatMoney = (num) => {
-  const sign = num > 0 ? "+" : num < 0 ? "-" : "";
-  const absNum = Math.abs(num).toFixed(2);
-  const [int, dec] = `${absNum}`.split(".");
-  let thousandCounter = 0;
-  const formattedIntArr = int.split("").reduceRight((acc, item, index) => {
-    if (thousandCounter === 2 && index !== 0) {
-      acc.push(item, ",");
-      thousandCounter = 0;
-    } else {
-      acc.push(item);
-      thousandCounter++;
-    }
-    return acc;
-  }, []);
-  const formattedInt = formattedIntArr.reverse().join("");
-  const formattedDec = dec ? `.${dec}` : "";
-
-  return `${sign} ${formattedInt}${formattedDec}`;
-};
-// const num = new Intl.NumberFormat('en-US').format(12321321);
-// (2312).toLocaleString()
-
-// ## Show number in money format
-
-const formatNumber = (num) => {
-  const sign = num > 0 ? "+" : num < 0 ? "-" : "";
-  const [int, dec] = num.toString().split(".");
-  const formattedInt = int.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  const formattedDec = dec ? `.${dec}` : "";
-
-  return `${sign} ${formattedInt}${formattedDec}`;
-};
-
-// ## Write a password generator with length n
-
-const generatePassword = (n) => {
-  const password = [];
-
-  for (let i = 0; i < n; i++) {
-    const code = Math.floor(Math.random() * (123 - 33)) + 33;
-    const char = String.fromCharCode(code);
-    password.push(char);
-  }
-
-  return password.join("");
-};
-
-// ## Calculate percentage with n numbers after dot
-
-const calc = (firstNum, secondNum, precision) => {
-  const percentage = (secondNum * 100) / firstNum;
-  return percentage.toFixed(precision);
-};
-
-// ## Get integer part of number and decimal
-
-const splitNumber = (num) => {
-  const [int = 0, decimal = 0] = num.toString().split(".");
-  return { int, decimal };
-};
-
-// ## Check if prime
-
-const isPrime = (n) => {
-  let prime = true;
-
-  for (let i = 2; i < n; i++) {
-    if (n % i === 0) {
-      prime = false;
-      break;
+  if (years > 0) {
+    str = `${years} years`;
+  } else {
+    const month = end.getMonth() - start.getMonth();
+    if (month > 0) {
+      str = `${month} months`;
+    } else if (daysDiff > 0) {
+      str = `${daysDiff} days`;
+    } else if (hoursDiff > 0) {
+      const restMinutes = minutesDiff % 60;
+      str = `${hoursDiff} hours ${restMinutes} minutes`;
+    } else if (minutesDiff > 0) {
+      str = `${minutesDiff} minutes`;
+    } else if (secondsDiff > 0) {
+      str = `${secondsDiff} seconds`;
     }
   }
 
-  return prime;
-};
-
-// ## Check if number is Armstrong Number
-
-const isArmstrong = (n) => {
-  const armstrongNumber = `${n}`.split("").reduce((acc, item) => {
-    return acc + item ** 3;
-  }, 0);
-
-  return n === armstrongNumber;
+  return str;
 };
