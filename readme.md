@@ -40,15 +40,16 @@ obj.arr;
 
 Create obj with property result  
 Create methods that calculates +, -, \*, /  
-Make possible to call one function after another
+Make possible to call one function after another  
+Use correct method creation
 
 ```javascript
 const calculator = {
   result: 0,
-  sum: () => {},
-  sub: () => {},
-  mul: () => {},
-  div: () => {},
+  sum: (num) => {},
+  sub: (num) => {},
+  mul: (num) => {},
+  div: (num) => {},
 };
 
 calculator.sum(2).sum(2).mul(4);
@@ -85,7 +86,7 @@ function Car(model, color, age, speed, gasTank, started) {
 
 ## Poker hand (optional)
 
-Create a constructor function that receives number of players and their names  
+Create a constructor function that receives their names  
 Shuffle a card deck and give to user a set of 5 cards  
 D-diamonds (♦), C-clubs (♣), H-hearts (♥) and S-spades (♠)  
 1-10 and J-jack, Q-queen, K-king, A-ace
