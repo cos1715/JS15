@@ -53,15 +53,14 @@ const calculator = {
 };
 
 calculator.sum(2).sum(2).mul(4);
-
 // 16
 ```
 
 ## Constructor Function
 
 Create a constructor function that creates car obj  
-Obj should have properties **model**, **color**, **age**, **speed**, **gasTank** and **started**
-Obj should have methods **startEngine**, **drive**, **stop**, **speedUp**, **slowDown**, **addGas**
+Obj should have properties **model**, **color**, **age**, **speed**, **gasTank** and **started**  
+Obj should have methods **startEngine**, **drive**, **stop**, **speedUp**, **slowDown**, **addGas**  
 This methods should be chainable  
 **startEngine** method checks if car has **gas** (you can create another method for checking **gas**)  
 If **gas** is not empty set property **started** to true  
