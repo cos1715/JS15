@@ -86,10 +86,10 @@ function Car(model, color, age, speed, gasTank, started) {
 
 ## Poker hand (optional)
 
-Create a constructor function that receives their names  
+Create a constructor function that receives players names  
 Shuffle a card deck and give to user a set of 5 cards  
 D-diamonds (♦), C-clubs (♣), H-hearts (♥) and S-spades (♠)  
-1-10 and J-jack, Q-queen, K-king, A-ace
+2-10 and J-jack, Q-queen, K-king, A-ace
 Create a separate function that checks if player has cards with same suit  
 Create a separate function that checks if player has cards with a card sequence (1-5) or (10-A)
 
@@ -97,7 +97,7 @@ Create a separate function that checks if player has cards with a card sequence 
 const checkFlush = () => {};
 const checkSequence = () => {};
 
-function Poker(players, names) {
+function Poker(players) {
   // your code
 }
 ```

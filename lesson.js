@@ -131,7 +131,7 @@ function printNumbers() {
   }
 }
 
-const obj = {
+const obj1 = {
   from: 1,
   to: 20,
   printNumbers,
@@ -140,7 +140,7 @@ const obj = {
 const obj2 = { from: 15, to: 105 };
 
 // console.log("🚀 printNumbers.call(obj2):", printNumbers.call(obj2));
-// console.log("🚀 obj.printNumbers:", obj.printNumbers());
+// console.log("🚀 obj1.printNumbers:", obj1.printNumbers());
 
 function Calculator(initialValue) {
   this.result = initialValue;
