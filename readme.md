@@ -2,101 +2,148 @@
 
 ## W3Schools
 
-> [This](https://www.w3schools.com/js/js_this.asp)  
-> [Constructor Function](https://www.w3schools.com/js/js_object_constructors.asp)
+> [Closures](https://www.w3schools.com/js/js_function_closures.asp)  
+> [Recursion](https://www.freecodecamp.org/news/recursion-in-javascript/) > [Recursion](https://www.programiz.com/javascript/recursion)
 
 # JS Homework
 
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Create arr method
+## Decorator
 
-Create obj with property from and to  
-Create function createArr that reads obj properties and  
-Creates new sorted arr with range from and to  
-Assign this arr as obj property
-
-Create 3 solutions
-Solution 1 without **bind**, **call** or **apply**  
-Solution 2 with **bind**
-Solution 3 with **call** or **apply**
+Create a decorator that caches function result  
+decorator receives a function as param.  
+If result in cache return value from cache  
+Test this solution with different types of functions  
+Code below is just an example you can modify it for your solution
 
 ```javascript
+const cachesDecorator = (func) => {
+  // your code
+};
+
 const obj = {
-  from: 1,
-  to: 10,
+  num: 1,
+  result: null,
+  sum(num) {
+    return this.num + num;
+  },
 };
 
-const createArr = () => {
+const sum = (num) => {
+  return this.num + num;
+};
+
+const decoratedSum = cachesDecorator(sum);
+decoratedSum(2);
+// 3
+
+const decoratedSum = cachesDecorator(obj.sum);
+decoratedSum(3);
+// 4
+```
+
+## Factorial recursion
+
+Count factorial by using recursion
+
+```javascript
+const factorial = (initialNumber) => {
   // your code
 };
 
-obj.arr;
-// [1, 2, 3, 4, 5, 6, 7, 8, 9];
+factorial(5);
+// 120
 ```
 
-## Calculator
+## Fibonacci recursion
 
-Create obj with property result  
-Create methods that calculates +, -, \*, /  
-Make possible to call one function after another  
-Use correct method creation
+Show Fibonacci sequence by using recursion
 
 ```javascript
-const calculator = {
-  result: 0,
-  sum: (num) => {},
-  sub: (num) => {},
-  mul: (num) => {},
-  div: (num) => {},
+const fib = (length) => {
+  // your code
 };
 
-calculator.sum(2).sum(2).mul(4);
-// 16
+fib(5);
+// 1 1 2 3 5
 ```
 
-## Constructor Function
-
-Create a constructor function that creates car obj  
-Obj should have properties **model**, **color**, **age**, **speed**, **gasTank** and **started**  
-Obj should have methods **startEngine**, **drive**, **stop**, **speedUp**, **slowDown**, **addGas**  
-This methods should be chainable  
-**startEngine** method checks if car has **gas** (you can create another method for checking **gas**)  
-If **gas** is not empty set property **started** to true  
-**drive** method should do smth only if property **started** is true and **gas** is not 0  
-if **started** true increase **speed** to 30  
-**stop** method sets property **started** to false and speed to 0  
-**speedUp** method increases **speed** by arg. Max speed is 200  
-Each **speedUp** method decreases **gas** by 5. Max gas is 20
-If **gas** is empty **stop** car  
-**gas** cannot be less then 0  
-If **started** is false **stop** car  
-speedUp(5) adds 5 to speed  
-**slowDown** works like speedUp but decreases **speed**. Min speed is 0  
-**addGas** method adds **gas** to car by arg  
-addGas(5) adds 5 to gas
+## Deep Copy (optional)
 
 ```javascript
-function Car(model, color, age, speed, gasTank, started) {
+const arr = [
+  1,
+  "string",
+  null,
+  undefined,
+  { a: 15, b: 10, c: [1, 2, 3, { a: 4 }], d: undefined, e: true },
+  true,
+  false,
+];
+
+const deepCopy = (arr) => {
   // your code
-}
+};
+
+deepCopy(arr);
+// completely copied value
 ```
 
-## Poker hand (optional)
+## DOM (optional)
 
-Create a constructor function that receives players names  
-Shuffle a card deck and give to user a set of 5 cards  
-D-diamonds (♦), C-clubs (♣), H-hearts (♥) and S-spades (♠)  
-2-10 and J-jack, Q-queen, K-king, A-ace
-Create a separate function that checks if player has cards with same suit  
-Create a separate function that checks if player has cards with a card sequence (1-5) or (10-A)
+Print dom tree in a console or via document.write
 
 ```javascript
-const checkFlush = () => {};
-const checkSequence = () => {};
+const table = {
+  tagName: "table",
+  attrs: {
+    border: "1",
+  },
+  children: [
+    {
+      tagName: "tr",
+      children: [
+        {
+          tagName: "td",
+          children: ["1x1"],
+        },
+        {
+          tagName: "td",
+          children: ["1x2"],
+        },
+      ],
+    },
+    {
+      tagName: "tr",
+      children: [
+        {
+          tagName: "td",
+          children: ["2x1"],
+        },
+        {
+          tagName: "td",
+          children: ["2x2"],
+        },
+      ],
+    },
+  ],
+};
 
-function Poker(players) {
+const render = (dom) => {
   // your code
-}
+};
+
+render(table);
+<table border="1">
+  <tr>
+    <td>1x1</td>
+    <td>1x2</td>
+  </tr>
+  <tr>
+    <td>2x1</td>
+    <td>2x2</td>
+  </tr>
+</table>;
 ```

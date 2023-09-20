@@ -1,154 +1,136 @@
-// // // const obj = {
-// // //   a: 1,
-// // //   b: 2,
-// // //   calcSum: () => {},
-// // //   calcSum() {},
-// // //   calcSum: function () {},
-// // // };
+function declaration() {}
+const expression = function () {};
+const arrow = () => {};
 
-// // const obj = {
-// //   a: 1,
-// //   b: 2,
-// //   calcSum() {
-// //     debugger;
-// //     return this.a + this.b;
-// //   },
-// // };
-
-// // const foo = () => {
-// //   console.log(this);
-// // };
-
-// // function bazz() {
-// //   console.log(this);
-// // }
-
-// // foo();
-
-// // bazz();
-
-// // console.log(obj.calcSum());
-
-// // const newValues = obj;
-// // const newValues = { ...obj, a: 2 };
-
-// // // newValues.a = 2;
-// // newValues.calcSum();
-
-// function printInfo(arg = "") {
-//   return `${this.name} is ${this.age} ${arg}`;
-// }
-
-// const user = {
-//   name: "Taras",
-//   age: 25,
-//   printInfo,
-// };
-
-// const arrow = () => {
-//   console.log(this);
-// };
-
-// const admin = {
-//   name: "admin",
-//   age: Infinity,
-//   role: "admin",
-//   status: "super-admin",
-//   printInfo: user.printInfo,
-//   arrow,
-//   getName: () => {
-//     debugger;
-//     return this.name;
-//   },
-
-//   get() {
-//     const getName = () => {
-//       return this.name;
-//     };
-//     arrow();
-//     const name = getName();
-
-//     return name;
-//   },
-// };
-
-// const foobar = user.printInfo;
-
-// foobar();
-
-// const admin2 = { ...admin, name: "capitan" };
-// admin2.get();
-
-// const bindInfo = printInfo.bind(admin2);
-
-// bindInfo("dfdsfsfds");
-
-// // will not work
-// const bindInfoUser = bindInfo.bind(user);
-
-// bindInfoUser();
-// // printInfo();
-
-// console.log(printInfo.call(user, "dfdsfds"));
-// console.log(printInfo.call(admin));
-// console.log(printInfo.apply(user, ["sdfdsfdsf"]));
-// console.log(printInfo.apply(admin));
-
-// function User(name, age) {
-//   const info = `${name} is ${age}`;
-
-//   this.name = name;
-//   this.age = age;
-//   this.info = info;
-//   this.printInfo = () => this.info;
-//   this.printName = function () {
-//     return this.name;
-//   };
-// }
-
-// const userFromConstructor = new User("Taras", 25);
-// console.log(
-//   "🚀 ~ file: lesson.js:103 ~ userFromConstructor:",
-//   userFromConstructor
-// );
-
-// const stolenInfo = userFromConstructor.printInfo;
-// const stolenName = userFromConstructor.printName;
-
-// console.log(
-//   new User("Taras", 25),
-//   new User("Adrii", 28),
-//   new User("Julia", 22),
-//   new User("Kate", 26)
-// );
-
-function printNumbers() {
-  const start = this.from;
-  const end = this.to;
-
-  for (let i = start; i < end; i++) {
-    console.log(i);
-  }
-}
-
-const obj1 = {
-  from: 1,
-  to: 20,
-  printNumbers,
+const a = 1;
+const foo = () => {
+  // const a = 5;
+  console.log(a);
 };
 
-const obj2 = { from: 15, to: 105 };
+const firstName = "Taras";
+const age = 25;
 
-// console.log("🚀 printNumbers.call(obj2):", printNumbers.call(obj2));
-// console.log("🚀 obj1.printNumbers:", obj1.printNumbers());
+function printInfo() {
+  function bazz() {
+    return firstName + " " + age;
+  }
+  console.log("info", bazz());
+}
 
-function Calculator(initialValue) {
-  this.result = initialValue;
+printInfo();
 
-  this.sum = (a) => {
-    this.result += a;
-  };
-  this.sub = (a) => {
-    this.result -= a;
+// ^
+// |
+function bar() {
+  const b = 1;
+  return a + b;
+}
+
+const aaa = bar;
+
+function counter() {
+  let count = 0;
+  return function () {
+    return count++;
   };
 }
+
+const counterInst = counter();
+
+counterInst();
+counterInst();
+counterInst();
+counterInst();
+console.log("counterInst", counterInst());
+
+const counterInst2 = counter();
+
+counterInst2();
+console.log("counterInst2", counterInst2());
+
+const closure = (initial = 0) => {
+  let count = initial;
+  return (n = 1) => {
+    count += n;
+    return count;
+  };
+};
+
+const improvedCounter = closure(10);
+improvedCounter(5);
+improvedCounter(5);
+console.log(improvedCounter(5));
+
+// const sum = (a) => {
+//   return (b) => {
+//     return a + b;
+//   };
+// };
+const sum = (a) => (b) => a + b;
+
+console.log(sum(1)(2)); // 3
+
+const closeObj = {
+  a: 5,
+  foo() {
+    return 1 + this.a;
+  },
+};
+
+function thisClosure(func) {
+  const a = 505;
+  return function () {
+    const result = func.call(this);
+    return result;
+  };
+}
+
+const thisBoo = thisClosure(closeObj.foo);
+console.log("🚀 ~ file: lesson.js:91 ~ thisBoo():", thisBoo.call(closeObj));
+
+const recursion = (from, to) => {
+  if (from === to) {
+    console.log("to", to);
+    return to;
+  } else {
+    recursion(from, to - 1);
+    console.log("to", to);
+    return to;
+  }
+};
+
+const sumRecursion = (from, to) => {
+  if (from === to) {
+    return from;
+  } else {
+    const result = sumRecursion(from, to - 1);
+    return result + to;
+  }
+};
+
+const cacheDecorator = () => {
+  const cache = {};
+
+  return function sumRecursion(from, to) {
+    if (cache[`${from}-${to}`]) {
+      console.log("🚀 ~ file: lesson.js:122 ~ sumRecursion ~ cache:", cache);
+      return cache[`${from}-${to}`];
+    }
+    if (from === to) {
+      cache[`${from}-${to}`] = from;
+      return from;
+    } else {
+      const result = sumRecursion(from, to - 1);
+      const sum = result + to;
+      cache[`${from}-${to}`] = sum;
+      return result + to;
+    }
+  };
+};
+
+const sumRecursionCached = cacheDecorator();
+console.log(sumRecursionCached(1, 5000));
+console.log(sumRecursionCached(1, 11000));
+
+// for(let i=from;i<to;i++;)
