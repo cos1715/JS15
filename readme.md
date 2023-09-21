@@ -94,12 +94,16 @@ const list = {
   },
 };
 
-const deepCopy = (arr) => {
+const readList = (list) => {
   // your code
 };
 
-deepCopy(arr);
-// completely copied value
+readList(list);
+// lesson-1
+// lesson-2
+// lesson-3
+// lesson-4
+// lesson-5
 ```
 
 ## Deep Copy (optional)
