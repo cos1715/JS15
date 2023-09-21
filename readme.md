@@ -3,7 +3,8 @@
 ## W3Schools
 
 > [Closures](https://www.w3schools.com/js/js_function_closures.asp)  
-> [Recursion](https://www.freecodecamp.org/news/recursion-in-javascript/) > [Recursion](https://www.programiz.com/javascript/recursion)
+> [Recursion](https://www.freecodecamp.org/news/recursion-in-javascript/)  
+> [Recursion](https://www.programiz.com/javascript/recursion)
 
 # JS Homework
 
