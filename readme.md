@@ -70,7 +70,40 @@ fib(5);
 // 1 1 2 3 5
 ```
 
+## Read List
+
+Print all list titles using recursion  
+(optional) think about solution with loops
+
+```javascript
+const list = {
+  title: "lesson-1",
+  next: {
+    title: "lesson-2",
+    next: {
+      title: "lesson-3",
+      next: {
+        title: "lesson-4",
+        next: {
+          title: "lesson-5",
+          next: null,
+        },
+      },
+    },
+  },
+};
+
+const deepCopy = (arr) => {
+  // your code
+};
+
+deepCopy(arr);
+// completely copied value
+```
+
 ## Deep Copy (optional)
+
+Copy all elements of data structure
 
 ```javascript
 const arr = [
