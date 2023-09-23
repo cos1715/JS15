@@ -42,13 +42,7 @@ const factorial = (initialNumber) => {
 // ## Fibonacci recursion
 
 const fib = (length) => {
-  let result;
-  if (length <= 1) {
-    result = length;
-  } else {
-    result = fib(length - 1) + fib(length - 2);
-  }
-  return result;
+  return length <= 1 ? length : fib(length - 1) + fib(length - 2);
 };
 
 const fibSeq = [];
