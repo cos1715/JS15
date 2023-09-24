@@ -154,22 +154,18 @@ const table = {
   ],
 };
 
-const render = (dom) => {
-  const { tagName, attrs, children } = dom;
-
+const render = ({ tagName, attrs, children }) => {
   let html = `<${tagName}`;
   for (const attr in attrs) {
     html += ` ${attr}="${attrs[attr]}"`;
   }
   html += ">";
 
-  if (Array.isArray(children)) {
-    for (const child of children) {
-      if (child?.tagName) {
-        html += render(child);
-      } else if (typeof child === "string") {
-        html += child;
-      }
+  for (const child of children) {
+    if (child?.tagName) {
+      html += render(child);
+    } else if (typeof child === "string") {
+      html += child;
     }
   }
 
