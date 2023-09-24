@@ -2,7 +2,7 @@
 
 ## Doc
 
-> [Closures](https://docs.google.com/document/d/12FMohaXqV7iow7UZR5hPgpKqIK4u6MEyE7U4NYLl8mU/edit?usp=sharing)
+> [Prototype](https://docs.google.com/document/d/12FMohaXqV7iow7UZR5hPgpKqIK4u6MEyE7U4NYLl8mU/edit?usp=sharing)
 
 # JS Homework
 
