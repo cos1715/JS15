@@ -1,156 +1,242 @@
-const person = {
-  name: "",
-  walks: true,
-  eats: true,
-  sleeps: false,
-  printInfo() {
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  // name = "Taras";
+  // age = 25;
+  getName() {
     return this.name;
-  },
-};
-// const taras = { name: "Taras", age: 25 };
-
-// taras.__proto__ = person;
-
-// Object.setPrototypeOf(taras, person);
-
-const taras = Object.create(person, {
-  name: {
-    value: "Taras",
-    writable: false,
-    enumerable: true,
-    configurable: true,
-  },
-  age: { value: 25, enumerable: true },
-});
-
-const yaroslav = {
-  name: "Yarolslav",
-  __proto__: person,
-};
-
-console.log(taras);
-console.log(yaroslav);
-
-Object.defineProperty(taras, "name", { writable: true });
-
-const obj = Object.create(null);
-
-// ##address
-
-// const country = {
-//   country: "Ukraine",
-//   getAddress() {
-//     let address = "";
-//     for (let key in this) {
-//       address += `${key} ${this[key]} `;
-//     }
-//     return address;
-//   },
-// };
-// Object.defineProperty(country, "getAddress", { enumerable: false });
-
-const country = Object.create(Object, {
-  country: { value: "Ukraine", enumerable: true },
-  getAddress: {
-    value() {
-      let address = "";
-      for (let key in this) {
-        address += `${key} ${this[key]} `;
-      }
-      return address;
-    },
-  },
-});
-
-const city = Object.create(country, {
-  city: { value: "Kyiv", enumerable: true },
-});
-
-const street = Object.create(city, {
-  street: { value: "Shevchenka", enumerable: true },
-});
-
-const house = Object.create(street, {
-  house: { value: "3", enumerable: true },
-});
-
-const flat = Object.create(house, {
-  flat: { value: "3", enumerable: true },
-});
-
-// ##cityPlan
-const cityPlan = {
-  houses: [1, 2, 3, 4, 5, 6, 7],
-  build(house) {
-    // this.houses.push(house);
-    this.houses = [...this.houses, house];
-  },
-};
-
-const kyiv = Object.create(cityPlan);
-const dnipro = Object.create(cityPlan);
-
-// Constructor prototype
-function Mayor(name) {
-  this.name = name;
+  }
+  getArrowName = () => {
+    return this.name;
+  };
+  get printInfo() {
+    return this.name + " " + this.age;
+  }
+  set printInfo(arg) {
+    const [name, age] = arg.split(" ");
+    this.name = name;
+    this.age = age;
+  }
 }
 
-function Uzhorod(name) {
-  Mayor.call(this, name);
-  this.landMarks = ["Castle"];
-}
-
-Uzhorod.prototype = Mayor.prototype;
-Uzhorod.prototype.constructor = Uzhorod;
-
-function Odessa(name) {
-  Mayor.call(this, name);
-  this.landMarks = ["Opera house"];
-}
-
-Odessa.prototype = Mayor.prototype;
-Odessa.prototype.constructor = Odessa;
-
-Mayor.prototype.selectNewMajor = function (name) {
-  this.name = name;
+User.prototype.arrowFunc = () => {
+  console.log(this);
+  return "arrow";
 };
 
-const uzhorod = new Uzhorod("Taras");
-const odessa = new Odessa("Yana");
+const user = new User("Taras", 25);
+const user2 = new User("Anton", 25);
+user.getName();
 
-// Geometry
+const func = user.getArrowName;
+console.log("🚀 func():", func());
+user.arrowFunc();
 
-function Shape(color) {
-  this.color = color;
+// create class Pet
+// add property ownerName, name
+// add method getOwnerName
+// add method getPetName
+// add method setOwnerName that changes owners name
+// add method setPetName that changes pets name
+// add getter to get both pet and owner names
+// add setter to change both pet and owner names
+
+class Pet {
+  constructor(ownerName, name) {
+    this.ownerName = ownerName;
+    this.name = name;
+  }
+
+  getOwnerName = () => {
+    return this.ownerName;
+  };
+  setOwnerName = (ownerName) => {
+    this.ownerName = ownerName;
+  };
+
+  getPetName = () => {
+    return this.name;
+  };
+  setPetName = (name) => {
+    this.ownerName = name;
+  };
+
+  get pet() {
+    return `Owner: ${this.ownerName}, pet: ${this.name}`;
+  }
+  set pet(arg) {
+    const [ownerName, name] = arg.split(" ");
+    this.ownerName = ownerName;
+    this.name = name;
+  }
 }
 
-Shape.prototype.getArea = function () {
-  return "Call this function in correct child instance";
-};
+const pet = new Pet("Taras", "Dog");
 
-function Square(color, sideA) {
-  Shape.call(this, color);
-  this.sideA = sideA;
+class Dog {
+  static animal = "dog";
+  static bark() {
+    return "woof woof";
+  }
+  constructor(name) {
+    this.name = name;
+  }
+  legs = 4;
 }
 
-Square.prototype = Object.create(Shape.prototype);
-Square.prototype.constructor = Square;
-
-Square.prototype.getArea = function () {
-  return this.sideA * this.sideA;
-};
-
-function Circle(color, radius) {
-  Shape.call(this, color);
-  this.radius = radius;
+class Shape {
+  constructor(color) {
+    this.color = color;
+    this._quantity = 1;
+  }
+  #size = 25;
+  static figure = "shape";
+  getColor() {
+    return this.color;
+  }
+  get quantity() {
+    return this._quantity;
+  }
+  set quantity(arg) {
+    this._quantity = arg;
+  }
 }
 
-Circle.prototype = Object.create(Shape.prototype);
-Circle.prototype.constructor = Circle;
+class Rectangular extends Shape {
+  constructor(sideA, sideB, color) {
+    super(color);
+    this.sideA = sideA;
+    this.sideB = sideB;
+  }
+  static figure = "rectangular";
+  getArea = () => {
+    return this.sideA * this.sideB;
+  };
+  getColor() {
+    const color = super.getColor();
+    return `Rectangular color is ${color}`;
+  }
+}
 
-Circle.prototype.getArea = function () {
-  return Math.PI * this.radius ** 2;
-};
+class Square extends Rectangular {
+  constructor(side, color) {
+    super(side, side, color);
+  }
+}
 
-const circle = new Circle("red", 4);
-const square = new Square("blue", 5);
+class Circle extends Shape {
+  static figure = "circle";
+  constructor(radius, color) {
+    super(color);
+    this.radius = radius;
+  }
+  getArea = () => {
+    return Math.PI * this.radius ** 2;
+  };
+}
+
+const square = new Square(3, "blue");
+
+class Car {
+  constructor(model, color, age, speed = 0, gas = 10, started = false) {
+    this.model = model;
+    this.color = color;
+    this.age = age;
+    this._speed = speed;
+    this.gas = gas;
+    this.started = started;
+  }
+  _maxSpeed = 200;
+  #maxGas = 20;
+
+  get maxSpeed() {
+    return this._maxSpeed;
+  }
+
+  set maxSpeed(arg) {
+    throw "You cannot change max speed";
+  }
+
+  #checkGasIsEmpty = () => {
+    return this.gas === 0;
+  };
+
+  startEngine = () => {
+    this.started = !this.#checkGasIsEmpty();
+    return this;
+  };
+
+  drive = () => {
+    const started = this.started;
+    const emptyGas = this.#checkGasIsEmpty();
+    if (started && !emptyGas) {
+      this._speed = 30;
+    }
+    return this;
+  };
+
+  stop = () => {
+    this._speed = 0;
+    this.started = false;
+
+    return this;
+  };
+
+  get speed() {
+    return this._speed;
+  }
+
+  set speed(arg) {
+    if (arg > this._speed) {
+      this._speedUp(arg);
+    } else {
+      this._slowDown(arg);
+    }
+  }
+
+  _speedUp = (newSpeed) => {
+    const started = this.started;
+    const emptyGas = this.#checkGasIsEmpty();
+
+    if (started && !emptyGas) {
+      const gasLevel = this.gas - 5;
+      const speedCalc = this._speed + newSpeed;
+      this._speed = speedCalc <= this._maxSpeed ? speedCalc : this._maxSpeed;
+      this.gas = gasLevel < 0 ? 0 : gasLevel;
+      gasLevel === 0 && this.stop();
+    } else {
+      this.stop();
+    }
+
+    return this;
+  };
+
+  _slowDown = (newSpeed) => {
+    const started = this.started;
+    const emptyGas = this.#checkGasIsEmpty();
+
+    if (started && !emptyGas) {
+      const gasLevel = this.gas - 5;
+      const speedCalc = this._speed - newSpeed;
+      this._speed = speedCalc <= 0 ? 0 : speedCalc;
+      this.gas = gasLevel < 0 ? 0 : gasLevel;
+      gasLevel === 0 && this.stop();
+    } else {
+      this.stop();
+    }
+
+    return this;
+  };
+
+  addGas = (newLevel) => {
+    const gasLevel = this.gas + newLevel;
+    this.gas = gasLevel > this.#maxGas ? 20 : gasLevel;
+
+    return this;
+  };
+}
+
+const car = new Car("BMW", "White", 5, 0, 20, false);
+console.log(car);
