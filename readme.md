@@ -15,19 +15,6 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Prototype inheritance
-
-Create class BankAccount  
-Add properties balance and accountHolder
-Protect filed balance from direct change
-Use getters, setters or methods
-
-```javascript
-class BankAccount {
-  // your code
-}
-```
-
 ## Encapsulation
 
 Create class BankAccount  
