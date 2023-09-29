@@ -1,8 +1,14 @@
 # Lecture
 
-## Doc
+## W3Schools
 
-> [Prototype](https://docs.google.com/document/d/12FMohaXqV7iow7UZR5hPgpKqIK4u6MEyE7U4NYLl8mU/edit?usp=sharing)
+> [Class](https://www.w3schools.com/js/js_class_intro.asp)  
+> [Inheritance](https://www.w3schools.com/js/js_class_inheritance.asp)  
+> [Static](https://www.w3schools.com/js/js_class_static.asp)
+
+## JS UA
+
+> [Class](http://xn--80adth0aefm3i.xn--j1amh/class)
 
 # JS Homework
 
