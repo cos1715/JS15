@@ -7,10 +7,6 @@
 > [Promise chaining](https://uk.javascript.info/promise-chaining)  
 > [Catch](https://uk.javascript.info/promise-error-handling)
 
-## JS UA
-
-> [Class](http://xn--80adth0aefm3i.xn--j1amh/class)
-
 # JS Homework
 
 Feel free to modify test data or add new data
