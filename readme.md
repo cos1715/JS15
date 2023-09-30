@@ -75,11 +75,11 @@ Create method **stopEngine** that sets property **started** to false
 Create method **drive**. This method receives 2 arguments **speed** and **distance** in km  
 You cannot **drive** if **started** is false  
 You cannot set **speed** more then **maxSpeed** and less then 0  
-Update **gas** property corresponding to **gasUsage**
-Formula to calculate **gas** level is **distance** \* **gasUsage** / 100  
-Create method **addGas** adds **gas** to car by arg  
+Update **gasLevel** property corresponding to **gasUsage**
+Formula to calculate **gasLevel** level is **distance** \* **gasUsage** / 100  
+Create method **addGas** adds **gasLevel** to car by arg  
 Argument must be bigger then zero  
-You cannot pour more **gas** then **gasTank**  
+You cannot pour more **gasLevel** then **gasTank**  
 Create method **printInfo** that prints in console all available information
 
 Create class **Car**  
