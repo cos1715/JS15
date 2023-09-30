@@ -1,3 +1,97 @@
+// ## Encapsulation
+
+class BankAccount {
+  constructor(accountHolder, balance) {
+    this.accountHolder = accountHolder;
+    this.#balance = balance;
+  }
+  #balance = 0;
+
+  get balance() {
+    return this.#balance;
+  }
+
+  set balance(newBalance) {
+    this.#balance = newBalance;
+  }
+}
+
+// ## Inheritance and Polymorphism
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  getInfo() {
+    return `name: ${this.name}`;
+  }
+}
+
+class Mammal extends Animal {
+  constructor(name, live) {
+    super(name);
+    this.live = live;
+  }
+
+  run() {
+    return `${this.name} is running`;
+  }
+
+  getInfo() {
+    return `${super.getInfo()}, live: ${this.live}.`;
+  }
+}
+
+class Bird extends Animal {
+  constructor(name, live) {
+    super(name);
+    this.live = live;
+  }
+
+  fly() {
+    return `${this.name} is flying`;
+  }
+
+  getInfo() {
+    return `${super.getInfo()}, live: ${this.live}.`;
+  }
+}
+
+class Dog extends Mammal {
+  constructor(name, live, breed) {
+    super(name, live);
+    this.breed = breed;
+  }
+
+  whoIsGoodDog() {
+    return "Woof woof!";
+  }
+
+  getInfo() {
+    return `${super.getInfo()}, breed: ${this.breed}`;
+  }
+}
+
+class Penguin extends Bird {
+  constructor(name, live, species) {
+    super(name, live);
+    this.species = species;
+  }
+
+  fly() {
+    return `penguin can't fly`;
+  }
+
+  swim() {
+    return `${this.name} is swimming`;
+  }
+
+  getInfo() {
+    return `${super.getInfo()}, species: ${this.species}`;
+  }
+}
+
 // ## OOP
 
 class Vehicle {
