@@ -61,7 +61,7 @@ const delayedLoop = () => {
 Create a function randomPromise  
 randomPromise should return promise  
 randomPromise should resolve promise if random number >= 0.5  
-randomPromise should reject promise if random number <> 0.5
+randomPromise should reject promise if random number < 0.5
 
 ```javascript
 const getUserData = (id) => {
