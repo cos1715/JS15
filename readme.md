@@ -66,8 +66,8 @@ Stake values can be **red**, **black**, **even**, **odd**, **number(0, 1, 2...)*
 If one of your stakes is fulfilled print '💵'  
 If all of your stakes are rejected print '🫣'
 
-- Feel free to updated stakes type  
-  Example from string **red** => **{value: 'red', color: true}**
+\* Feel free to updated stakes type  
+Example from string **red** => **{value: 'red', color: true}**
 
 ```javascript
 const casino = (n) => {
