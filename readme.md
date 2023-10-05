@@ -31,7 +31,7 @@ Create a function createPromiseArr
 Function receives length of arr  
 Reuse randomResolve to get promises  
 Use Promise.all  
-If revolved then print '🥳 Yass'
+If revolved then print '🥳 Yasss'  
 If rejected then print '🫠🫡 ok'  
 (Optional) play with Promise.race
 
