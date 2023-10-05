@@ -1,133 +1,168 @@
-// console.log("start");
+const users = [
+  {
+    id: 1,
+    name: "Taras",
+    age: 30,
+    movies: [],
+  },
+  {
+    id: 2,
+    name: "Kate",
+    age: 45,
+    movies: ["Titanic", "Avatar"],
+  },
+];
+const start = Date.now();
+const getUserData = (id) => {
+  const random = Math.floor(Math.random() * (5 - 1)) + 1;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const user = users.find((item) => item.id === id);
+      if (user) {
+        resolve(user);
+      } else {
+        reject("404 not found");
+      }
+    }, random * 1000);
+  });
+};
 
-// setTimeout(() => {
-//   for (let i = 0; i < 10000; i++) {
-//     console.log("loop in timeout");
-//   }
-// }, 0);
+try {
+  throw Error("404");
+} catch (e) {
+  console.error(e);
+}
 
-// for (let i = 0; i < 1000; i++) {
-//   console.log("loop");
-// }
+const resolved = Promise.resolve(1);
+const rejected = Promise.reject(1);
 
-// console.log("end");
+const bazz = (id) => {
+  return id > 5 ? Promise.resolve(1) : Promise.reject(1);
+};
+bazz(3)
+  .then(() => {})
+  .catch(() => {});
 
-// const start = Date.now();
-
-// setTimeout(() => {
-//   const time = Date.now();
-//   console.log("1 time-start time:0", time - start);
-// }, 0);
-// setTimeout(() => {
-//   const time = Date.now();
-//   console.log("2 time-start time:0", time - start);
-// }, 0);
-// setTimeout(() => {
-//   const time = Date.now();
-//   console.log("3 time-start time:3000", time - start);
-// }, 3000);
-// setTimeout(() => {
-//   const time = Date.now();
-//   console.log("4 time-start time:1000", time - start);
-// }, 1000);
-// setTimeout(() => {
-//   const time = Date.now();
-//   console.log("5 time-start time:1000", time - start);
-// }, 1000);
-// const timerId = setTimeout(() => {
-//   const time = Date.now();
-//   console.log("6 time-start time:2000", time - start);
-// }, 2000);
-
-// const end = Date.now();
-
-// clearTimeout(timerId);
-
-// for (let i = 0; i < 1000; i++) {
-//   console.log("loop");
-// }
-// const intervalId = setInterval(() => {
-//   const time = Date.now();
-//   const timeDiff = time - start;
-//   console.log("time-start time", time - start);
-//   if (timeDiff > 10000) {
-//     clearInterval(intervalId);
-//   }
-// }, 1000);
-
-// setTimeout(() => {
-//   for (let i = 0; i < 10000; i++) {
-//     console.log("loop in timeout");
-//   }
-// }, 1000);
-
-// setInterval(() => {
-//   const date = new Date();
-//   const hours = `${date.getHours()}`.padStart(2, 0);
-//   const minutes = `${date.getMinutes()}`.padStart(2, 0);
-//   const seconds = `${date.getSeconds()}`.padStart(2, 0);
-
-//   console.log(`${hours}:${minutes}:${seconds}`);
-// }, 1000);
-
-// let timerId;
-
-// const printTime = () => {
-//   const date = new Date();
-//   const hours = `${date.getHours()}`.padStart(2, 0);
-//   const minutes = `${date.getMinutes()}`.padStart(2, 0);
-//   const seconds = `${date.getSeconds()}`.padStart(2, 0);
-
-//   console.log(`${hours}:${minutes}:${seconds}`);
-//   if (seconds > 50) {
-//     clearTimeout(timerId);
-//   } else {
-//     timerId = setTimeout(printTime, 1000);
-//   }
-// };
-
-// timerId = setTimeout(printTime, 1000);
-
-const promise = new Promise((resolve, reject) => {
-  // resolve(10);
-  reject("rejected because");
+const promiseAllSuccess = Promise.all([
+  getUserData(1),
+  getUserData(2),
+  new Promise((resolve, reject) => {
+    setTimeout(() => resolve(2), 10000);
+  }),
+]);
+promiseAllSuccess.then((data) => {
+  const end = Date.now();
+  console.log(end - start);
 });
-console.log("🚀 ~ file: lesson.js:95 ~ promise ~ promise:", promise);
-console.log("🚀 ~ file: lesson.js:95 ~ promise ~ promise:", promise === 10);
+const promiseAllRejected = Promise.all([
+  getUserData(1),
+  getUserData(22),
+  new Promise((resolve, reject) => {
+    setTimeout(() => reject(2), 10000);
+  }),
+]);
+promiseAllRejected
+  .then((data) => {
+    const end = Date.now();
+    console.log(end - start);
+  })
+  .catch((e) => {
+    const end = Date.now();
+    console.log(end - start);
+  });
 
-// promise
-//   .then(
-//     (data) => {
-//       console.log(data + 90);
-//       throw Error("dfds");
-//       return 100;
-//     }
-//     // (error) => {
-//     //   console.log("in then onreject", error);
-//     // }
-//   )
-//   .finally(() => {
-//     console.log("after then");
-//     return 1;
-//   })
-//   .catch((error) => {
-//     console.log("catch", error);
-//     return "error";
-//   })
+const promiseAllSettled = Promise.allSettled([
+  getUserData(1),
+  getUserData(222),
+]);
+
+promiseAllSettled
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
+const p1 = getUserData(1);
+const p2 = getUserData(2);
+const resolvedRace = Promise.race([p1, p2]);
+resolvedRace.then((data) => {
+  console.log(data);
+});
+const resolvedRaceRejected = Promise.race([Promise.reject("1"), p1, p2]);
+resolvedRace.then((data) => {
+  console.log(data);
+});
+const resolvedRaceAllRejected = Promise.race([
+  Promise.reject("1"),
+  Promise.reject("2"),
+  Promise.reject("3"),
+]);
+resolvedRaceAllRejected
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
+const resolvedAny = Promise.any([p1, p2]);
+resolvedAny.then((data) => {
+  console.log(data);
+});
+const resolvedAnyRejected = Promise.any([
+  Promise.reject("reject"),
+  Promise.resolve("resolve"),
+]);
+resolvedAnyRejected
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+// const resolvedAnyRejected2 = Promise.any([p1, Promise.reject("1"), p2]);
+// resolvedRace.then((data) => {
+//   console.log(data);
+// });
+// const resolvedAnyAllRejected = Promise.any([
+//   Promise.reject("1"),
+//   Promise.reject("2"),
+//   Promise.reject("3"),
+// ]);
+// resolvedRaceAllRejected
 //   .then((data) => {
-//     return new Promise((resolve, reject) => {
-//       resolve("innerPromise" + " " + data);
-//     });
+//     console.log(data);
 //   })
-//   .then(() => {})
-//   .then(() => {})
-//   .then(() => {})
-//   .then(() => {})
-//   .then(() => {})
-
-//   .finally(() => {
-//     console.log("finally");
+//   .catch((e) => {
+//     console.log(e);
 //   });
+
+try {
+  console.log("33242423");
+  ddssd.dsdsfdss;
+  console.log("after error");
+} catch (e) {
+  console.log("catch", e);
+} finally {
+  console.log("finally");
+}
+
+async function bar() {}
+
+const foo = async () => {
+  try {
+    const p1 = await getUserData(1);
+    const p2 = await getUserData(22);
+    console.log(p1);
+    console.log(p2);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+foo();
 
 const delay = (ms) => {
   return new Promise((resolve) => {
@@ -135,39 +170,37 @@ const delay = (ms) => {
   });
 };
 
-delay(3000).then(() => {
-  console.log("after 3000ms");
+const readDelay = async () => {
+  await delay(2000);
+  console.log("after delay");
+};
+readDelay();
+
+const readAllSettled = async () => {
+  const resp = await Promise.allSettled([
+    Promise.resolve("successful"),
+    Promise.resolve("successful"),
+    Promise.reject("reject"),
+    Promise.reject("reject"),
+    Promise.resolve("successful"),
+    Promise.reject("reject"),
+    Promise.resolve("successful"),
+    Promise.reject("reject"),
+    Promise.reject("reject"),
+  ]);
+  const successful = resp.filter((item) => item.status === "fulfilled");
+  const rejected = resp.filter((item) => item.status === "rejected");
+
+  return { successful, rejected };
+};
+
+const readData = readAllSettled();
+readData.then((data) => {
+  console.log("🚀 ~ file: lesson.js:232 ~ readData:", data);
 });
 
-new Promise((re, reject) => {
-  reject("error");
-})
-  .catch((e) => {
-    console.log("catch rejected", e);
-    throw Error("error from catch");
-  })
-  .then(
-    () => {},
-    (data) => {
-      console.log("then 2 callback", data);
-      throw Error("from then 2 callback");
-    }
-  )
-  .then((data) => {
-    console.log("then", data);
-    return 1;
-  })
-  .catch((e) => {
-    console.log("catch after then", e);
-    return e;
-  })
-  .then((data) => {
-    console.log("then after catch", data);
-    throw Error("from then");
-  })
-  .finally(() => {
-    console.log("finally");
-  })
-  .catch((e) => {
-    console.log("last catch", e);
-  });
+const x = async () => {
+  const readData = await readAllSettled();
+};
+
+x();
