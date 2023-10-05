@@ -17,8 +17,7 @@ Create a function randomResolve
 Create a random number from 1 to 5  
 Delay promise for random seconds  
 If number is even then resolve promise  
-If number is odd then reject promise  
-Try using setTimeout and setInterval
+If number is odd then reject promise
 
 ```javascript
 const randomResolve = () => {
