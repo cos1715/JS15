@@ -33,3 +33,8 @@ class ProductsService {
   // your code
 }
 ```
+
+## Google
+
+> [Meme](https://youtube.com/clip/UgkxBxChhcj_2ZH0QAR0qpxwicFOKnhpbKWa?si=m3OaEi9qM16I3Oyh)  
+> When you google in english and google doesn't understand it and give results in enemy language
