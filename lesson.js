@@ -1,206 +1,163 @@
-const users = [
-  {
-    id: 1,
-    name: "Taras",
-    age: 30,
-    movies: [],
-  },
-  {
-    id: 2,
-    name: "Kate",
-    age: 45,
-    movies: ["Titanic", "Avatar"],
-  },
-];
-const start = Date.now();
-const getUserData = (id) => {
-  const random = Math.floor(Math.random() * (5 - 1)) + 1;
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const user = users.find((item) => item.id === id);
-      if (user) {
-        resolve(user);
-      } else {
-        reject("404 not found");
-      }
-    }, random * 1000);
-  });
-};
+// console.log(1);
 
-try {
-  throw Error("404");
-} catch (e) {
-  console.error(e);
-}
+// setTimeout(() => {
+//   console.log(2);
+// }, 0);
 
-const resolved = Promise.resolve(1);
-const rejected = Promise.reject(1);
-
-const bazz = (id) => {
-  return id > 5 ? Promise.resolve(1) : Promise.reject(1);
-};
-bazz(3)
-  .then(() => {})
-  .catch(() => {});
-
-const promiseAllSuccess = Promise.all([
-  getUserData(1),
-  getUserData(2),
-  new Promise((resolve, reject) => {
-    setTimeout(() => resolve(2), 10000);
-  }),
-]);
-promiseAllSuccess.then((data) => {
-  const end = Date.now();
-  console.log(end - start);
-});
-const promiseAllRejected = Promise.all([
-  getUserData(1),
-  getUserData(22),
-  new Promise((resolve, reject) => {
-    setTimeout(() => reject(2), 10000);
-  }),
-]);
-promiseAllRejected
-  .then((data) => {
-    const end = Date.now();
-    console.log(end - start);
-  })
-  .catch((e) => {
-    const end = Date.now();
-    console.log(end - start);
-  });
-
-const promiseAllSettled = Promise.allSettled([
-  getUserData(1),
-  getUserData(222),
-]);
-
-promiseAllSettled
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
-const p1 = getUserData(1);
-const p2 = getUserData(2);
-const resolvedRace = Promise.race([p1, p2]);
-resolvedRace.then((data) => {
-  console.log(data);
-});
-const resolvedRaceRejected = Promise.race([Promise.reject("1"), p1, p2]);
-resolvedRace.then((data) => {
-  console.log(data);
-});
-const resolvedRaceAllRejected = Promise.race([
-  Promise.reject("1"),
-  Promise.reject("2"),
-  Promise.reject("3"),
-]);
-resolvedRaceAllRejected
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
-const resolvedAny = Promise.any([p1, p2]);
-resolvedAny.then((data) => {
-  console.log(data);
-});
-const resolvedAnyRejected = Promise.any([
-  Promise.reject("reject"),
-  Promise.resolve("resolve"),
-]);
-resolvedAnyRejected
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-// const resolvedAnyRejected2 = Promise.any([p1, Promise.reject("1"), p2]);
-// resolvedRace.then((data) => {
-//   console.log(data);
+// Promise.resolve().then(() => {
+//   console.log(3);
 // });
-// const resolvedAnyAllRejected = Promise.any([
-//   Promise.reject("1"),
-//   Promise.reject("2"),
-//   Promise.reject("3"),
-// ]);
-// resolvedRaceAllRejected
-//   .then((data) => {
-//     console.log(data);
+
+// Promise.resolve().then(() => {
+//   setTimeout(() => {
+//     console.log(4);
+//   }, 0);
+// });
+
+// Promise.resolve().then(() => {
+//   console.log(5);
+// });
+
+// setTimeout(() => {
+//   console.log(6);
+// }, 0);
+
+// console.log(7);
+
+// 1 7 3 5 2 6 4
+
+// console.log(1);
+
+// Promise.resolve().then(() => {
+//   console.log(5);
+// });
+
+// Promise.resolve()
+//   .then(() => {
+//     console.log(2);
+//     return Promise.resolve();
 //   })
-//   .catch((e) => {
-//     console.log(e);
+//   .then(() => {
+//     console.log(3);
 //   });
 
-try {
-  console.log("33242423");
-  ddssd.dsdsfdss;
-  console.log("after error");
-} catch (e) {
-  console.log("catch", e);
-} finally {
-  console.log("finally");
+// console.log(4);
+
+// 1 4 5 2 3
+
+// console.log(1);
+
+// async function bazz() {
+//   console.log(2);
+//   await new Promise((resolve) => {
+//     console.log(3);
+//     setTimeout(() => {
+//       console.log(4);
+//     }, 0);
+//     console.log(5);
+//     resolve();
+//   });
+//   console.log(6);
+// }
+
+// bazz();
+
+// console.log(7);
+
+// prev result
+// 1 2 3 5 6 4
+
+// 1 2 3 5 7 6 4
+
+console.log(1);
+
+setTimeout(() => {
+  console.log(2);
+}, 0);
+
+setTimeout(() => {
+  console.log(3);
+}, 0);
+
+const promise = Promise.resolve();
+
+for (let i = 0; i < 3; i++) {
+  promise
+    .then(() => {
+      setTimeout(() => {
+        console.log(4);
+        setTimeout(() => {
+          console.log(5);
+        }, 0);
+
+        Promise.resolve().then(() => {
+          console.log(6);
+          promise.then(() => {
+            console.log(7);
+          });
+        });
+      }, 0);
+    })
+    .then(() => {
+      console.log(8);
+    });
 }
 
-async function bar() {}
+console.log(9);
 
-const foo = async () => {
-  try {
-    const p1 = await getUserData(1);
-    const p2 = await getUserData(22);
-    console.log(p1);
-    console.log(p2);
-  } catch (e) {
+// 1 9 8 2 3 4 6 7 5
+
+// 1 9 8 8 8 2 3 4 6 7 4 6 7 4 6 7 5 5 5
+
+const url = new URL("https://dummyjson.com/users");
+
+fetch(url)
+  .then((resp) => resp.json())
+  .then((data) => console.log(data))
+  .catch((e) => {
     console.log(e);
-  }
-};
-
-foo();
-
-const delay = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
   });
+
+const getUser = async (id = 1) => {
+  const reps = await fetch(`${url}/${id}`);
+  const data = await reps.json();
+
+  console.log(data);
 };
 
-const readDelay = async () => {
-  await delay(2000);
-  console.log("after delay");
-};
-readDelay();
+getUser();
 
-const readAllSettled = async () => {
-  const resp = await Promise.allSettled([
-    Promise.resolve("successful"),
-    Promise.resolve("successful"),
-    Promise.reject("reject"),
-    Promise.reject("reject"),
-    Promise.resolve("successful"),
-    Promise.reject("reject"),
-    Promise.resolve("successful"),
-    Promise.reject("reject"),
-    Promise.reject("reject"),
-  ]);
-  const successful = resp.filter((item) => item.status === "fulfilled");
-  const rejected = resp.filter((item) => item.status === "rejected");
+const getQueryUser = async () => {
+  const params = new URLSearchParams();
+  params.append("q", "John");
+  const reps = await fetch(`${url}/search?${params}`);
+  const data = await reps.json();
 
-  return { successful, rejected };
+  console.log(data);
 };
 
-const readData = readAllSettled();
-readData.then((data) => {
-  console.log("🚀 ~ file: lesson.js:232 ~ readData:", data);
-});
+getQueryUser();
 
-const x = async () => {
-  const readData = await readAllSettled();
+const createUser = async () => {
+  const user = {
+    email: "xlinster1d@bravesites.com",
+    eyeColor: "Amber",
+    firstName: "Johnathon",
+    gender: "male",
+  };
+  const reps = await fetch(`${url}/add`, {
+    method: "post",
+    headers: {
+      "Content-Type": "Application/json",
+      "X-custom-header": "123213",
+      token: "fdsfds",
+      auth: "dfdsds",
+    },
+    body: JSON.stringify(user),
+  });
+  const data = await reps.json();
+
+  console.log(data);
 };
 
-x();
+createUser();
