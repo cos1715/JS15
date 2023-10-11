@@ -12,11 +12,6 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-# JS Homework
-
-Feel free to modify test data or add new data
-It will help for better testing
-
 ## Server Mock
 
 Create class **ProductsService**  
@@ -26,7 +21,7 @@ Methods can be static
 Read response from BE and console.log it or store it in class properties  
 Don't forget to catch errors when request failed
 
-\*Extra task: Delete products with ids 1,2,3,4 and random id from 5 to 10000 simultaneously
+\*Extra task: Delete products with ids 1,2,3,4 and random id from 5 to 1000 simultaneously
 
 ```javascript
 class ProductsService {
