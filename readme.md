@@ -17,24 +17,17 @@ It will help for better testing
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Server Mock
+## Notification (optional)
 
-Create class **ProductsService**  
-Implement every scenario from [dummyjson](https://dummyjson.com/docs/products) in your class  
-For each scenario create new method  
-Methods can be static  
-Read response from BE and console.log it or store it in class properties  
-Don't forget to catch errors when request failed
-
-\*Extra task: Delete products with ids 1,2,3,4 and random id from 5 to 10000 simultaneously
+In HTML file add markup for notification  
+Add initial styles and property **display: none;**
+Use class **ProductsService**
+On success show notification and text **Success**
+On error show notification and text **error**
+Hide notification after 1 second
 
 ```javascript
 class ProductsService {
   // your code
 }
 ```
-
-## Google
-
-> [Meme](https://youtube.com/clip/UgkxBxChhcj_2ZH0QAR0qpxwicFOKnhpbKWa?si=m3OaEi9qM16I3Oyh)  
-> When you google in english and google doesn't understand it and give results in enemy language
