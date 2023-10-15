@@ -2,10 +2,12 @@
 
 ## Javascript.info
 
-> [Event loop](https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke)  
-> [Fetch](https://uk.javascript.info/fetch)  
-> [Cors](https://uk.javascript.info/fetch-crossorigin)  
-> [URL](https://uk.javascript.info/url)
+> [Browser](https://uk.javascript.info/browser-environment)  
+> [DOM](https://uk.javascript.info/dom-nodes)  
+> [DOM Search](https://uk.javascript.info/searching-elements-dom)  
+> [DOM Node](https://uk.javascript.info/basic-dom-node-properties)  
+> [Attributes](https://uk.javascript.info/dom-attributes-and-properties)  
+> [Styles](https://uk.javascript.info/styles-and-classes)
 
 # JS Homework
 
