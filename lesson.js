@@ -1,100 +1,163 @@
-// const span = document.createElement("span");
-// span.innerText = "Element";
-// const textNode = document.createTextNode("custom text");
-// console.log("🚀 ~ file: lesson.js:4 ~ textNode:", textNode);
-// console.dir(span);
-// const container = document.querySelector(".w3-container");
-// span.classList.add("sdasd");
-// container.append(span);
-// // container.prepend(span);
-// // container.after(span);
-// // container.before(span);
-// container.insertAdjacentHTML("afterend", '<p class="dfds">abra</p>');
-// document.body.append(textNode);
+const button1 = document.getElementById("1");
+const button2 = document.getElementById("2");
+// const button3 = document.getElementById("3");
+const main = document.querySelector("main");
+const header = document.querySelector("header");
+const div = document.querySelector("div");
+// const footer = document.querySelector("footer");
+// const input = document.querySelector("input");
+// const checkbox = document.getElementById("checkbox");
 
-// const clone = container.cloneNode();
-// const cloneDeep = container.cloneNode(true);
-// console.log("🚀 ~ file: lesson.js:17 ~ clone:", clone);
-// console.log("🚀 ~ file: lesson.js:17 ~ cloneDeep:", cloneDeep);
+// const onClick = () => {
+//   console.log("click 1");
+// };
 
-// container.after(cloneDeep);
-// container.before(clone);
-// const main = document.createElement("main");
-
-// // container.replaceWith(main, textNode);
-
-// // document.body.remove();
-// const text = document.querySelector(
-//   "body > div > div:nth-child(3) > p:nth-child(3)"
+// document.addEventListener(
+//   "click",
+//   () => {
+//     console.log("document click");
+//   },
+//   { once: true }
 // );
-// text.remove();
-// container.classList.remove("w3-cell");
-// document.body.insertAdjacentElement("afterbegin", text);
 
-// const arr = [1, 2, 3, 4, 5];
-
-// arr.forEach((elem) => {
-//   const text = document.createElement("p");
-//   text.classList.add("loading");
-//   text.innerText = elem;
-
-//   document.body.append(text);
+// footer.addEventListener("click", () => {
+//   console.log("footer click");
+// });
+// button1.addEventListener("click", onClick);
+// button1.addEventListener("click", () => {
+//   console.log("as");
+// });
+// button1.addEventListener("click", () => {
+//   console.log("asasd");
+// });
+// button2.addEventListener("click", () => {
+//   console.log("click 2");
+// });
+// button3.addEventListener("click", () => {
+//   console.log("click 3");
 // });
 
-const createImg = (src, alt) => {
-  const img = document.createElement("img");
-  img.src = src;
-  img.alt = alt;
-  document.body.append(img);
-};
+// main.addEventListener("click", (event) => {
+//   console.log("main click", event);
+// });
 
-const loadImg = async () => {
-  const url = new URL("https://api.nasa.gov/planetary/apod");
-  url.searchParams.set("api_key", "MIDpdacjifSU395EcnZAHn79VQE9eBWwNLyGOHkV");
-  url.searchParams.set("date", "2023-10-12");
-  const resp = await fetch(url);
-  const data = await resp.json();
-  createImg(data.url, "Nasa image");
-};
+// const divClickHandler = () => {
+//   console.log("div click");
+// };
 
-loadImg();
+// div.addEventListener("click", divClickHandler);
 
-const tableArr = [
-  { header: "Name", data: ["Taras", "Yana"] },
-  { header: "Age", data: [25, 25] },
-  { header: "Learn Js", data: [true, true] },
-];
+// div.removeEventListener("click", divClickHandler);
 
-const createTable = () => {
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const tbody = document.createElement("tbody");
-  const headerRow = document.createElement("tr");
-  const bodyRowLength = tableArr[0].data.length;
-  table.style.border = "1px solid black";
+// header.addEventListener("mousedown", () => {
+//   console.log("header mousedown");
+// });
+// header.addEventListener("mouseup", () => {
+//   console.log("header mouseup");
+// });
+// header.addEventListener("mouseenter", () => {
+//   console.log("header mouseenter");
+// });
+// header.addEventListener("mouseover", () => {
+//   console.log("header mouseover");
+// });
+// header.addEventListener("mouseleave", () => {
+//   console.log("header mouseleave");
+// });
 
-  tableArr.forEach((element) => {
-    const th = document.createElement("th");
-    th.innerText = element.header;
-    th.style.border = "1px solid black";
-    headerRow.append(th);
-  });
-  thead.append(headerRow);
-  for (let i = 0; i < bodyRowLength; i++) {
-    const row = document.createElement("tr");
+// input.addEventListener("keydown", (e) => {
+//   console.log("keydown", e);
+// });
+// input.addEventListener("keyup", (e) => {
+//   if (e.key === "j") {
+//     console.log("j  event");
+//   }
+//   console.log("keyup", e);
+// });
+// input.addEventListener("keypress", (e) => {
+//   console.log("keypress", e);
+// });
 
-    tableArr.forEach((element) => {
-      const td = document.createElement("td");
-      td.innerText = element.data[i];
-      td.style.border = "1px solid black";
-      row.append(td);
-    });
-    tbody.append(row);
+// document.addEventListener("keyup", (e) => {
+//   console.log("keyup doc", e);
+// });
+
+// checkbox.addEventListener("change", (e) => {
+//   console.log("change", e);
+// });
+
+// input.addEventListener("focus", (e) => {
+//   console.log("focus", e);
+// });
+// input.addEventListener("blur", (e) => {
+//   console.log("blur", e);
+// });
+
+button1.addEventListener("click", (e) => {
+  e.target.innerText = "Clicked!";
+  e.target.style.backgroundColor = "yellow";
+  e.stopPropagation();
+  console.log(
+    "🚀 ~ file: lesson.js:100 ~ button1.addEventListener ~ stopPropagation:"
+  );
+});
+
+const text = document.getElementById("collapse");
+
+button2.addEventListener("click", (e) => {
+  text.classList.toggle("show");
+});
+
+const form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(e);
+});
+
+document.addEventListener("click", (e) => {
+  console.log(e.target.nodeName + " click");
+});
+
+const table = document.querySelector("table");
+table.addEventListener("click", (e) => {
+  console.log("🚀 ~ file: lesson.js:125 ~ table.addEventListener ~ e:", e);
+  if (e.target.nodeName === "TD") {
+    console.log(e.target.innerText);
   }
+});
 
-  table.append(thead);
-  table.append(tbody);
-  document.body.append(table);
-};
-
-createTable();
+const list = document.querySelector("ul");
+const listChildren = list.children;
+console.log("🚀 ~ file: lesson.js:131 ~ listChildren:", listChildren);
+list.addEventListener("click", (e) => {
+  if (e.target.nodeName === "LI") {
+    if (!e.ctrlKey && !e.shiftKey) {
+      const isHighlighted = e.target.classList.contains("highlight");
+      for (let child of listChildren) {
+        child.classList.remove("highlight");
+      }
+      if (!isHighlighted) {
+        e.target.classList.add("highlight");
+      }
+    }
+    if (e.ctrlKey) {
+      e.target.classList.toggle("highlight");
+    }
+    if (e.shiftKey) {
+      e.target.classList.add("highlight");
+      let foundSelected = false;
+      for (let child of listChildren) {
+        const hasClass = child.classList.contains("highlight");
+        if (foundSelected && hasClass) {
+          // foundSelected = false;
+        }
+        if (foundSelected) {
+          child.classList.add("highlight");
+        }
+        if (foundSelected && hasClass) {
+          foundSelected = hasClass;
+        }
+      }
+    }
+  }
+});

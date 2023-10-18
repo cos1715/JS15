@@ -12,3 +12,42 @@
   width: 120px;
   border-radius: 50%;
 }
+
+main {
+  width: 400px;
+  height: 400px;
+  background-color: aquamarine;
+}
+
+header {
+  width: 300px;
+  height: 300px;
+  background-color: blueviolet;
+}
+
+div {
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+}
+footer {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+li {
+  padding: 4px;
+}
+
+.highlight {
+  background-color: chocolate;
+}
