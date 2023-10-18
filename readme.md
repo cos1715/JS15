@@ -1,8 +1,8 @@
 # Lecture
 
-## Javascript.info
+## W3Schools
 
-> [DOM](https://uk.javascript.info/modifying-document)
+> [Events](https://www.w3schools.com/js/js_htmldom_eventlistener.asp)
 
 # JS Homework
 
@@ -26,3 +26,7 @@ In every cell add index
 Create a button **Add row**  
 On btn click add row with **n** cells to table  
 Every new cell should continue prev index
+
+```javascript
+createTable(n);
+```
