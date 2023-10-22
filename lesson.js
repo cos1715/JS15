@@ -1,163 +1,115 @@
-const button1 = document.getElementById("1");
-const button2 = document.getElementById("2");
-// const button3 = document.getElementById("3");
-const main = document.querySelector("main");
-const header = document.querySelector("header");
-const div = document.querySelector("div");
-// const footer = document.querySelector("footer");
-// const input = document.querySelector("input");
-// const checkbox = document.getElementById("checkbox");
+export const form = document.getElementById("form");
+const textInput = document.getElementById("name");
+const checkbox = document.getElementById("admin");
+const radioButton = document.querySelectorAll('input[type="radio"]');
+console.log("🚀 ~ file: lesson.js:5 ~ radioButton:", radioButton);
+console.log("🚀 ~ file: lesson.js:3 ~ textInput:", textInput);
+console.dir(form);
 
-// const onClick = () => {
-//   console.log("click 1");
-// };
-
-// document.addEventListener(
-//   "click",
-//   () => {
-//     console.log("document click");
-//   },
-//   { once: true }
-// );
-
-// footer.addEventListener("click", () => {
-//   console.log("footer click");
-// });
-// button1.addEventListener("click", onClick);
-// button1.addEventListener("click", () => {
-//   console.log("as");
-// });
-// button1.addEventListener("click", () => {
-//   console.log("asasd");
-// });
-// button2.addEventListener("click", () => {
-//   console.log("click 2");
-// });
-// button3.addEventListener("click", () => {
-//   console.log("click 3");
-// });
-
-// main.addEventListener("click", (event) => {
-//   console.log("main click", event);
-// });
-
-// const divClickHandler = () => {
-//   console.log("div click");
-// };
-
-// div.addEventListener("click", divClickHandler);
-
-// div.removeEventListener("click", divClickHandler);
-
-// header.addEventListener("mousedown", () => {
-//   console.log("header mousedown");
-// });
-// header.addEventListener("mouseup", () => {
-//   console.log("header mouseup");
-// });
-// header.addEventListener("mouseenter", () => {
-//   console.log("header mouseenter");
-// });
-// header.addEventListener("mouseover", () => {
-//   console.log("header mouseover");
-// });
-// header.addEventListener("mouseleave", () => {
-//   console.log("header mouseleave");
-// });
-
-// input.addEventListener("keydown", (e) => {
-//   console.log("keydown", e);
-// });
-// input.addEventListener("keyup", (e) => {
-//   if (e.key === "j") {
-//     console.log("j  event");
-//   }
-//   console.log("keyup", e);
-// });
-// input.addEventListener("keypress", (e) => {
-//   console.log("keypress", e);
-// });
-
-// document.addEventListener("keyup", (e) => {
-//   console.log("keyup doc", e);
-// });
-
-// checkbox.addEventListener("change", (e) => {
-//   console.log("change", e);
-// });
-
-// input.addEventListener("focus", (e) => {
-//   console.log("focus", e);
-// });
-// input.addEventListener("blur", (e) => {
-//   console.log("blur", e);
-// });
-
-button1.addEventListener("click", (e) => {
-  e.target.innerText = "Clicked!";
-  e.target.style.backgroundColor = "yellow";
-  e.stopPropagation();
-  console.log(
-    "🚀 ~ file: lesson.js:100 ~ button1.addEventListener ~ stopPropagation:"
-  );
+textInput.addEventListener("focus", () => {
+  console.log("focus");
 });
 
-const text = document.getElementById("collapse");
-
-button2.addEventListener("click", (e) => {
-  text.classList.toggle("show");
+textInput.addEventListener("blur", (e) => {
+  console.log("blur", e);
+  // fetch("urlTOBE", {
+  //   method: "POST",
+  //   body: JSON.stringify({ name: e.target.value }),
+  // });
 });
 
-const form = document.getElementById("form");
+textInput.addEventListener("keydown", (e) => {
+  console.log("keydown");
+});
+
+textInput.addEventListener("keyup", (e) => {
+  const value = e.target.value;
+  if (value === "yes") {
+    e.target.value = "no";
+  }
+  if (value === "no") {
+    e.target.value = "yes";
+  }
+  console.log("keyup");
+});
+
+textInput.addEventListener("keypress", (e) => {
+  console.log("keypress");
+});
+
+checkbox.addEventListener("change", (e) => {
+  console.log("change", e);
+});
+
+radioButton.forEach((element) => {
+  element.addEventListener("change", (e) => {
+    console.log("radio button", e);
+  });
+});
+
+const validateInput = (e) => {
+  e.preventDefault();
+  const input = e.target.elements.name;
+  const name = input.value;
+  const errorHint = document.getElementById("name-error-msg");
+  if (!name.length) {
+    input.focus();
+    errorHint.innerText = "Required";
+    errorHint.classList.toggle("hidden");
+  }
+  if (name.length > 3) {
+    input.classList.remove("error");
+    input.classList.add("success");
+    errorHint.classList.toggle("hidden");
+  } else {
+    input.classList.remove("success");
+    input.classList.add("error");
+    errorHint.innerText = "Name is too short";
+    errorHint.classList.toggle("hidden");
+  }
+};
+const validateRadio = (e) => {
+  const radioButtons = e.target.elements.sex;
+  const sex = radioButtons.value;
+  const errorHint = document.getElementById("sex-error-msg");
+  if (!sex) {
+    errorHint.innerText = "Required";
+    errorHint.classList.toggle("hidden");
+    for (let radio of radioButtons) {
+      radio.style.accentColor = "red";
+    }
+  } else {
+    for (let radio of radioButtons) {
+      radio.style.accentColor = "green";
+    }
+  }
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(e);
+  validateInput(e);
+  validateRadio(e);
+  const value = {
+    admin: e.target.elements.admin.checked,
+    name: e.target.elements.name.value,
+    sex: e.target.elements.sex.value,
+  };
+
+  const str = JSON.stringify(value);
+  const formData = new FormData(e.target);
+  const inputValue = formData.get("name");
 });
 
-document.addEventListener("click", (e) => {
-  console.log(e.target.nodeName + " click");
+const fileInput = document.getElementById("file-input");
+fileInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.addEventListener("load", (e) => {
+    const img = document.createElement("img");
+    img.src = e.target.result;
+    document.body.append(img);
+  });
+  reader.readAsDataURL(file);
 });
 
-const table = document.querySelector("table");
-table.addEventListener("click", (e) => {
-  console.log("🚀 ~ file: lesson.js:125 ~ table.addEventListener ~ e:", e);
-  if (e.target.nodeName === "TD") {
-    console.log(e.target.innerText);
-  }
-});
-
-const list = document.querySelector("ul");
-const listChildren = list.children;
-console.log("🚀 ~ file: lesson.js:131 ~ listChildren:", listChildren);
-list.addEventListener("click", (e) => {
-  if (e.target.nodeName === "LI") {
-    if (!e.ctrlKey && !e.shiftKey) {
-      const isHighlighted = e.target.classList.contains("highlight");
-      for (let child of listChildren) {
-        child.classList.remove("highlight");
-      }
-      if (!isHighlighted) {
-        e.target.classList.add("highlight");
-      }
-    }
-    if (e.ctrlKey) {
-      e.target.classList.toggle("highlight");
-    }
-    if (e.shiftKey) {
-      e.target.classList.add("highlight");
-      let foundSelected = false;
-      for (let child of listChildren) {
-        const hasClass = child.classList.contains("highlight");
-        if (foundSelected && hasClass) {
-          // foundSelected = false;
-        }
-        if (foundSelected) {
-          child.classList.add("highlight");
-        }
-        if (foundSelected && hasClass) {
-          foundSelected = hasClass;
-        }
-      }
-    }
-  }
-});
+export { form, fileInput };

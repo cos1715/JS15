@@ -51,3 +51,20 @@ li {
 .highlight {
   background-color: chocolate;
 }
+
+.input {
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+.success {
+  border: 2px solid greenyellow;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.hidden {
+  display: none;
+}
