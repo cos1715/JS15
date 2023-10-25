@@ -7,38 +7,29 @@
     <title>Document</title>
   </head>
   <body>
+    <button id="sign-in">SignIn</button>
     <form id="form">
-      <label for="name">Name: </label>
-      <input
-        id="name"
-        type="text"
-        placeholder="Enter your name"
-        name="name"
-        class="input"
-      />
-      <p id="name-error-msg" class="hidden"></p>
-      <br />
-      <label for="admin">Admin: </label>
-      <input id="admin" type="checkbox" name="admin" />
-      <p id="admin-error-msg" class="hidden"></p>
-      <br />
-      <label>Sex: </label>
-      <br />
-      <label
-        >Male
-        <input type="radio" name="sex" value="male" />
+      <label>
+        Name:
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter your name"
+        />
       </label>
-      <label
-        >Female
-        <input type="radio" name="sex" value="female" />
+      <label>
+        Email:
+        <input type="email" name="email" id="email" />
       </label>
-      <p id="sex-error-msg" class="hidden"></p>
-      <br />
-      <button type="submit">Submit</button>
+      <button type="submit">Send</button>
     </form>
-    <input type="file" id="file-input" />
+    <p id="timer">0</p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
 
-    <script src="./lesson.js" type="module"></script>
+    <script src="./lesson.js"></script>
     <!-- <script src="./homework.js"></script> -->
   </body>
 </html>

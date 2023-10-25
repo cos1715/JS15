@@ -1,115 +1,82 @@
-export const form = document.getElementById("form");
-const textInput = document.getElementById("name");
-const checkbox = document.getElementById("admin");
-const radioButton = document.querySelectorAll('input[type="radio"]');
-console.log("🚀 ~ file: lesson.js:5 ~ radioButton:", radioButton);
-console.log("🚀 ~ file: lesson.js:3 ~ textInput:", textInput);
-console.dir(form);
+// const fetchData = async () => {
+//   const res = await fetch("https://dummyjson.com/products");
+//   location.assign("https://dummyjson.com/products");
+// };
 
-textInput.addEventListener("focus", () => {
-  console.log("focus");
+// fetchData();
+const button = document.getElementById("sign-in");
+button.addEventListener("click", () => {
+  const url = new URL(location.href);
+  url.searchParams.set("auth", true);
+  location.replace(url);
 });
 
-textInput.addEventListener("blur", (e) => {
-  console.log("blur", e);
-  // fetch("urlTOBE", {
-  //   method: "POST",
-  //   body: JSON.stringify({ name: e.target.value }),
-  // });
-});
-
-textInput.addEventListener("keydown", (e) => {
-  console.log("keydown");
-});
-
-textInput.addEventListener("keyup", (e) => {
-  const value = e.target.value;
-  if (value === "yes") {
-    e.target.value = "no";
+document.addEventListener("DOMContentLoaded", () => {
+  const url = new URL(location.href);
+  const auth = url.searchParams.get("auth");
+  if (auth) {
+    button.remove();
   }
-  if (value === "no") {
-    e.target.value = "yes";
-  }
-  console.log("keyup");
 });
 
-textInput.addEventListener("keypress", (e) => {
-  console.log("keypress");
-});
-
-checkbox.addEventListener("change", (e) => {
-  console.log("change", e);
-});
-
-radioButton.forEach((element) => {
-  element.addEventListener("change", (e) => {
-    console.log("radio button", e);
-  });
-});
-
-const validateInput = (e) => {
-  e.preventDefault();
-  const input = e.target.elements.name;
-  const name = input.value;
-  const errorHint = document.getElementById("name-error-msg");
-  if (!name.length) {
-    input.focus();
-    errorHint.innerText = "Required";
-    errorHint.classList.toggle("hidden");
-  }
-  if (name.length > 3) {
-    input.classList.remove("error");
-    input.classList.add("success");
-    errorHint.classList.toggle("hidden");
-  } else {
-    input.classList.remove("success");
-    input.classList.add("error");
-    errorHint.innerText = "Name is too short";
-    errorHint.classList.toggle("hidden");
-  }
+const STORAGE_KEYS = {
+  name: "name",
+  email: "email",
+  timer: "timer",
 };
-const validateRadio = (e) => {
-  const radioButtons = e.target.elements.sex;
-  const sex = radioButtons.value;
-  const errorHint = document.getElementById("sex-error-msg");
-  if (!sex) {
-    errorHint.innerText = "Required";
-    errorHint.classList.toggle("hidden");
-    for (let radio of radioButtons) {
-      radio.style.accentColor = "red";
-    }
-  } else {
-    for (let radio of radioButtons) {
-      radio.style.accentColor = "green";
-    }
-  }
-};
+
+const form = document.getElementById("form");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+nameInput.addEventListener("blur", (e) => {
+  localStorage.setItem(STORAGE_KEYS.name, e.target.value);
+});
+emailInput.addEventListener("blur", (e) => {
+  localStorage.setItem(STORAGE_KEYS.email, e.target.value);
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const savedName = localStorage.getItem(STORAGE_KEYS.name);
+  const savedEmail = localStorage.getItem(STORAGE_KEYS.email);
+  nameInput.value = savedName;
+  emailInput.value = savedEmail;
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  validateInput(e);
-  validateRadio(e);
-  const value = {
-    admin: e.target.elements.admin.checked,
-    name: e.target.elements.name.value,
-    sex: e.target.elements.sex.value,
-  };
-
-  const str = JSON.stringify(value);
-  const formData = new FormData(e.target);
-  const inputValue = formData.get("name");
+  nameInput.value = "";
+  emailInput.value = "";
+  localStorage.clear();
 });
 
-const fileInput = document.getElementById("file-input");
-fileInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
-  reader.addEventListener("load", (e) => {
-    const img = document.createElement("img");
-    img.src = e.target.result;
-    document.body.append(img);
-  });
-  reader.readAsDataURL(file);
+const timer = document.getElementById("timer");
+const startBtn = document.getElementById("start");
+const stopBtn = document.getElementById("stop");
+const resetBtn = document.getElementById("reset");
+
+let startTime = sessionStorage.getItem(STORAGE_KEYS.timer)
+  ? +sessionStorage.getItem(STORAGE_KEYS.timer)
+  : 0;
+let timerId;
+
+startBtn.addEventListener("click", () => {
+  if (!timerId) {
+    timerId = setInterval(() => {
+      startTime += 1;
+      sessionStorage.setItem(STORAGE_KEYS.timer, startTime);
+      timer.innerText = startTime;
+    }, 1000);
+  }
 });
 
-export { form, fileInput };
+stopBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  timerId = null;
+});
+
+resetBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  startTime = 0;
+  timerId = null;
+  timer.innerText = 0;
+  sessionStorage.removeItem(STORAGE_KEYS.timer);
+});
