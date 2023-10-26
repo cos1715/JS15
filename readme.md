@@ -7,3 +7,9 @@
 # JS Homework
 
 Focus on module project
+
+## Todo list (optional)
+
+Create a todo list  
+Save list in browser storage  
+List should not be deleted on tab refresh
